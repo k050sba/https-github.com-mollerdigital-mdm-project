@@ -1,0 +1,4 @@
+
+D:\Informatica\10.2.0\tomcat\bin>cd D:\Scripts\MDMDeleteProcessCommandLine\DeleteAudit\Email 
+
+D:\Scripts\MDMDeleteProcessCommandLine\DeleteAudit\Email>java -cp ./build/classes;./lib/newlib/* no.moller.email.SendEmail Prod 

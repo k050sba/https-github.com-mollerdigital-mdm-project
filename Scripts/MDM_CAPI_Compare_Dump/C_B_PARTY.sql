@@ -1,0 +1,1 @@
+SET NOCOUNT ON; select * from C_B_PARTY where TYPE in('P','O') and COUNTRY_CODE in('NO', 'EE', 'LV', 'LT') and HUB_STATE_IND=1 ORDER BY CAST(ROWID_OBJECT AS INT)

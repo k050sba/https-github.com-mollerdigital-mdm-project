@@ -1,0 +1,1 @@
+sqlcmd -S SQLP2AGMDM\MDMP2 -U SQLMDMP -P sQ!mdmPP -d mdm_custom -Q "exec DQ_SCORECARD_DATA_RE" -o D:\Scripts\PROD_DQSCORECARD_OUTLOG.txt

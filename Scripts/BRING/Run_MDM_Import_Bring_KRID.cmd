@@ -1,0 +1,1 @@
+d:\scripts\Bring\psexec.exe -i -s -d \\no000010smdmp5  -u cmxserviceprod -p !cmX5erviceP  "D:\scripts\RunMDMJob_Bring_Import_KRID.bat"

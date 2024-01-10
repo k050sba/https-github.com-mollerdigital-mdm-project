@@ -1,0 +1,15 @@
+com.siperian.mrm
+com.siperian.mrm.cleanse.api
+com.siperian.mrm.cleanse.api.tools
+com.siperian.mrm.message
+com.siperian.mrm.workflow
+com.siperian.mrm.workflow.activevos
+com.siperian.mrm.workflow.activevos2
+com.siperian.sif.client
+com.siperian.sif.message
+com.siperian.sif.message.am
+com.siperian.sif.message.event
+com.siperian.sif.message.event.am
+com.siperian.sif.message.hm
+com.siperian.sif.message.metadata
+com.siperian.sif.message.mrm

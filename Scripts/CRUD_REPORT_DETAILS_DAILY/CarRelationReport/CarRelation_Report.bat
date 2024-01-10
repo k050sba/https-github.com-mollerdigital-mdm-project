@@ -1,0 +1,1 @@
+sqlcmd -S SQLP2AGMDM\MDMP2 -U SQLMDMP -P sQ!mdmPP -i "D:\Scripts\CRUD_REPORT_DETAILS_DAILY\CarRelationReport\CarRelation_Report.sql"

@@ -1,0 +1,1 @@
+SET NOCOUNT ON; select * from C_B_ELECTRONIC_ADDRESS where exists(select 1 from C_B_PARTY where TYPE in('P','O') and COUNTRY_CODE in('NO', 'EE', 'LV', 'LT') and HUB_STATE_IND=1 and C_B_ELECTRONIC_ADDRESS.PARTY_ID=C_B_PARTY.ROWID_OBJECT ) and HUB_STATE_IND=1 order by CAST(ROWID_OBJECT as INT)

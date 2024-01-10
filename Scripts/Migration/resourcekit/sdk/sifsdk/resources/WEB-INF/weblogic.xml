@@ -1,0 +1,19 @@
+<!DOCTYPE weblogic-web-app PUBLIC    
+	"-//BEA Systems, Inc.//DTD Web Application 8.1//EN"    
+	"http://www.bea.com/servers/wls810/dtd/weblogic810-web-jar.dtd">
+<weblogic-web-app>
+	<reference-descriptor>
+        <ejb-reference-description>
+            <ejb-ref-name>ejb/ApiCallBean</ejb-ref-name>
+    	    <jndi-name>cmx.server.ApiCallBean</jndi-name>
+        </ejb-reference-description>
+        <ejb-reference-description>
+            <ejb-ref-name>ejb/RequestEjb</ejb-ref-name>
+    	    <jndi-name>cmx.server.RequestEjb</jndi-name>
+        </ejb-reference-description>
+	</reference-descriptor>
+	<container-descriptor>
+		<!-- This is needed because of conflicts with Weblogic Axis classes -->
+        <prefer-web-inf-classes>true</prefer-web-inf-classes>
+  </container-descriptor>
+</weblogic-web-app>

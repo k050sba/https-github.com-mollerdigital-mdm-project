@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<project name="Informatica MDM Web Services" default="build" basedir=".">
+
+    <property file="../../build.properties" />
+
+    <property name="sip.title" value="Informatica MDM SIF SDK Web Services" />
+
+    <property file="my.properties" />
+    <property environment="env" />
+
+	<!--
+		Set the classpath used for compiling the application source
+	-->
+    <path id="classpath.compile">
+        <fileset dir="lib" includes="*.jar" />
+        <fileset dir="lib/axis-1.3" includes="*.jar" />
+        <fileset dir="lib/j2ee-1.3" includes="*.jar" />
+    </path>
+
+	<!--
+		Clean the output directory by removing all compiled code and output files
+	-->
+    <target name="clean" description="Cleans up all files created by the build">
+        <delete dir="output" failonerror="false" />
+    </target>
+
+	<!--
+		Build the ear file for each application server
+	-->
+    <target name="build" depends="compile" description="compile, war, and ear">
+        <build_ear appserver="JBoss" appweb.xml="jboss-web.xml" />
+        <build_ear appserver="Websphere" appweb.xml="*.xmi" />
+        <build_ear appserver="Weblogic" appweb.xml="weblogic.xml" />
+    </target>
+
+	<!--
+		Compile the source code
+	-->
+    <target name="compile" description="compile">
+        <mkdir dir="output/classes" />
+        <javac srcdir="source/java" destdir="output/classes" includes="**" excludes="" debug="on" optimize="off" deprecation="on">
+            <classpath refid="classpath.compile" />
+        </javac>
+    </target>
+
+	<!--
+		Deploy the generated ear file to all configured application servers.
+		Edit my.properties to set the configuration for which app servers to use
+	-->
+	<target name="deploy" depends="build" description="deploy to App Server.  Specify deployment locations in my.properties">
+		<antcall target="-deploy-jboss"/>
+		<antcall target="-deploy-was"/>
+		<antcall target="-deploy-wls"/>
+	</target>
+
+	<!--
+		Internal targets used to deploy to the various application servers.
+	-->
+	<target name="-deploy-jboss" if="jboss.deploy.dir">
+		<copy file="output/JBoss/${app.name}.ear" todir="${jboss.deploy.dir}"
+			failonerror="false" overwrite="true" />
+	</target>
+	<target name="-deploy-was" if="was.home">
+		<property name="wsadmin.bat" value="${was.home}/bin/wsadmin.bat"/>
+
+		<!--
+			If  WebSphere is not configured for deployment, the line below will show
+			a warning in the Eclipse editor.  This is normal and can be ignored since
+			the was.home property is commented out in my.properties.
+		-->
+		<taskdef name="wsadmin" classname="com.ibm.websphere.ant.tasks.WsAdmin"
+			classpath="${was.home}/lib/wsanttasks.jar"/>
+
+		<exec executable="${wsadmin.bat}" failonerror="false">
+			<arg line="-f wsuninstall.jacl ${app.name}.ear"/>
+		</exec>
+
+		<exec dir="output/WebSphere" executable="${wsadmin.bat}" failonerror="true">
+			<arg line="-conntype SOAP -user ${was.username} -password ${was.password}"/>
+			<arg line="-f ../../wsinstall.jacl ${was.cell} ${was.node} ${was.server} ${app.name}.ear"/>
+		</exec>
+
+	</target>
+	<target name="-deploy-wls" if="wls.autodeploy.dir">
+		<copy file="output/Weblogic/${app.name}.ear" todir="${wls.autodeploy.dir}"
+			failonerror="false" overwrite="true" />
+	</target>
+	
+	<!--
+		Define a macro to build the war file.
+	-->
+	<macrodef name="build_war">
+        <attribute name="appserver" />
+        <attribute name="appweb.xml" default="" />
+        <sequential>
+		    <mkdir dir="output/@{appserver}" />
+            <condition property="sip-includes" value="siperian-common.jar, siperian-api.jar">
+                <not> <equals arg1="@{appserver}" arg2="JBoss"/> </not>
+            </condition>
+            <condition property="log4j-includes" value="log*.jar">
+                <not> <equals arg1="@{appserver}" arg2="JBoss"/> </not>
+            </condition>
+            <condition property="castor-includes" value="castor-1.1.1-xml.jar">
+                <not> <equals arg1="@{appserver}" arg2="JBoss"/> </not>
+            </condition>
+            <condition property="jboss-includes" value="*.jar">
+                <not> <equals arg1="@{appserver}" arg2="JBoss"/> </not>
+            </condition>
+            <condition property="j2ee-includes" value="*.jar">
+                <equals arg1="@{appserver}" arg2="Weblogic"/>
+            </condition>
+            <condition property="weblogic-includes" value="*.jar">
+                <equals arg1="@{appserver}" arg2="Weblogic"/>
+            </condition>
+            <condition property="websphere-includes" value="*.jar">
+                <equals arg1="@{appserver}" arg2="Websphere"/>
+            </condition>
+            <copy file="source/properties/siperian-client.properties" todir="output/classes/com/siperian/sif/sdk" />
+            <copy file="resources/@{appserver}/server-type.properties" todir="output/classes" overwrite="true" />
+            <copy file="source/properties/log4j.xml" todir="output/classes" />
+		        <war warfile="output/@{appserver}/${app.name}.war" webxml="resources/WEB-INF/web.xml">
+		            <classes dir="output/classes" includes="**/*.*" />
+		            <lib dir="lib" includes="${sip-includes}" />
+		            <lib dir="lib" includes="${log4j-includes}" />
+		            <lib dir="lib" includes="${castor-includes}" />
+					<lib dir="lib" includes="commons-httpclient-2.0.jar" />   <!-- needed if HTTP protocol is used -->
+					<lib dir="lib" includes="commons-pool-1.3.jar" />
+                    <lib dir="lib" includes="siperian-server-pkiutil.jar"/>
+                    <lib dir="lib" includes="informatica-bpm-adapter.jar"/>
+		            <lib dir="lib/axis-1.3" includes="${jboss-includes}" />
+		            <lib dir="lib/xerces-2.7.1" includes="${jboss-includes}" />
+					<lib dir="lib/j2ee-1.3" includes="${j2ee-includes}" />
+					<lib dir="lib/weblogic" includes="${weblogic-includes}" />
+					<lib dir="lib/websphere" includes="${websphere-includes}" />
+		            <webinf dir="source/properties" includes="server-config.wsdd"  />
+		            <webinf dir="resources/WEB-INF" includes="@{appweb.xml}"  />
+	                <manifest>
+	                    <attribute name="Created-By" value="${sip.copyright}" />
+	                    <attribute name="Specification-Title" value="${sip.title}" />
+	                    <attribute name="Specification-Vendor" value="${sip.company.name}" />
+	                    <attribute name="Implementation-Vendor" value="${sip.company.name}" />
+	                    <attribute name="Implementation-Title" value="${sip.title}" />
+	                    <attribute name="Implementation-Vendor-Id" value="SIP" />
+	                    <attribute name="Implementation-URL" value="${sip.url}" />
+	                </manifest>
+            </war>
+        </sequential>
+    </macrodef>
+
+	<!--
+		Define a macro to build the ear file.
+	-->
+    <macrodef name="build_ear">
+        <attribute name="appserver" />
+        <attribute name="appweb.xml" default="" />
+        <sequential>
+            <build_war appserver="@{appserver}" appweb.xml="@{appweb.xml}" />   
+            <condition property="jboss-app.xml" value="jboss-app.xml">
+                <equals arg1="@{appserver}" arg2="JBoss"/>
+            </condition>
+		        <ear earfile="output/@{appserver}/${app.name}.ear" appxml="resources/META-INF/application.xml">
+		            <fileset dir="output/@{appserver}" includes="*.war" />
+		            <metainf dir="resources/META-INF" includes="${jboss-app.xml}" />
+                <manifest>
+                    <attribute name="Created-By" value="${sip.copyright}" />
+                    <attribute name="Specification-Title" value="${sip.title}" />
+                    <attribute name="Specification-Vendor" value="${sip.company.name}" />
+                    <attribute name="Implementation-Vendor" value="${sip.company.name}" />
+                    <attribute name="Implementation-Title" value="${sip.title}" />
+                    <attribute name="Implementation-Vendor-Id" value="SIP" />
+                    <attribute name="Implementation-URL" value="${sip.url}" />
+                </manifest>
+            </ear>
+        </sequential>
+    </macrodef>
+	
+</project>

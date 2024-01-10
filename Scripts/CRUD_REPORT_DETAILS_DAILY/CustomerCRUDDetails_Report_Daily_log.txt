@@ -1,0 +1,87 @@
+Changed database context to 'MDM_CM'.
+
+(141 rows affected)
+
+(10 rows affected)
+
+(2063684 rows affected)
+
+(8 rows affected)
+
+(17 rows affected)
+
+(2 rows affected)
+
+(3 rows affected)
+
+(7 rows affected)
+
+(8 rows affected)
+
+(25 rows affected)
+
+(22 rows affected)
+
+(15 rows affected)
+
+(1072 rows affected)
+
+(8 rows affected)
+
+(0 rows affected)
+
+(7 rows affected)
+
+(8 rows affected)
+
+(4 rows affected)
+
+(1 rows affected)
+
+(392 rows affected)
+
+(192 rows affected)
+
+(192 rows affected)
+
+(392 rows affected)
+
+(8 rows affected)
+
+(8 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(392 rows affected)
+
+(200 rows affected)
+
+(200 rows affected)
+
+(200 rows affected)
+
+(200 rows affected)
+
+(8 rows affected)
+
+(0 rows affected)
+
+(13 rows affected)
+
+(0 rows affected)
+
+(204 rows affected)

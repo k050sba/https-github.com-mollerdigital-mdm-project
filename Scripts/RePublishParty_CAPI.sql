@@ -1,0 +1,49 @@
+USE [MDM_CM]; 
+GO
+DECLARE @totalcount numeric(20,5); 
+BEGIN
+select ROWID_OBJECT from MDM_CM..C_REPOS_MQ_DATA_CHANGE --set SENT_STATE_ID='0'
+  where ROWID_OBJECT IN(
+  select CUSTOMER_ID from C_REL_PARTY_RETAILER A
+where CUSTOMER_ID in (
+select ROWID_OBJECT from C_B_PARTY where CREATE_DATE > '2019-09-24'
+and HUB_STATE_IND='1'
+)
+and exists (select 1 from C_REL_PARTY_RETAILER B where A.CUSTOMER_ID=B.CUSTOMER_ID and B.MNET_FELLES_ID is null and B.HUB_STATE_IND='1')
+and not exists (select 1 from C_REL_PARTY_RETAILER B where A.CUSTOMER_ID=B.CUSTOMER_ID and B.MNET_FELLES_ID is not null and B.HUB_STATE_IND='1')
+)
+and not exists(select 1 from MNET_Copy..TKB006 where PARTYID=C_REPOS_MQ_DATA_CHANGE.ROWID_OBJECT)
+and ROWID_TABLE='SVR1.1NNK     ' and ROWID_MQ_RULE='SVR1.BLOWTL   ' --and ROWID_OBJECT='19067133'
+and CHANGE_TYPE=1;
+  
+    SELECT @totalcount = count(1) from MDM_CM..C_REPOS_MQ_DATA_CHANGE 
+  where ROWID_OBJECT IN(
+  select CUSTOMER_ID from C_REL_PARTY_RETAILER A
+where CUSTOMER_ID in (
+select ROWID_OBJECT from C_B_PARTY where CREATE_DATE > '2019-09-24'
+and HUB_STATE_IND='1'
+)
+and exists (select 1 from C_REL_PARTY_RETAILER B where A.CUSTOMER_ID=B.CUSTOMER_ID and B.MNET_FELLES_ID is null and B.HUB_STATE_IND='1')
+and not exists (select 1 from C_REL_PARTY_RETAILER B where A.CUSTOMER_ID=B.CUSTOMER_ID and B.MNET_FELLES_ID is not null and B.HUB_STATE_IND='1')
+)
+and not exists(select 1 from MNET_Copy..TKB006 where PARTYID=C_REPOS_MQ_DATA_CHANGE.ROWID_OBJECT)
+and ROWID_TABLE='SVR1.1NNK     ' and ROWID_MQ_RULE='SVR1.BLOWTL   '
+and CHANGE_TYPE=1; 
+
+if @totalcount > 0 
+update  MDM_CM..C_REPOS_MQ_DATA_CHANGE set SENT_STATE_ID='0'
+  where ROWID_OBJECT IN(
+  select CUSTOMER_ID from C_REL_PARTY_RETAILER A
+where CUSTOMER_ID in (
+select ROWID_OBJECT from C_B_PARTY where CREATE_DATE > '2019-09-24'
+and HUB_STATE_IND='1'
+)
+and exists (select 1 from C_REL_PARTY_RETAILER B where A.CUSTOMER_ID=B.CUSTOMER_ID and B.MNET_FELLES_ID is null and B.HUB_STATE_IND='1')
+and not exists (select 1 from C_REL_PARTY_RETAILER B where A.CUSTOMER_ID=B.CUSTOMER_ID and B.MNET_FELLES_ID is not null and B.HUB_STATE_IND='1')
+)
+and not exists(select 1 from MNET_Copy..TKB006 where PARTYID=C_REPOS_MQ_DATA_CHANGE.ROWID_OBJECT)
+and ROWID_TABLE='SVR1.1NNK     ' and ROWID_MQ_RULE='SVR1.BLOWTL   '
+and CHANGE_TYPE=1;
+SELECT CURRENT_TIMESTAMP,@totalcount;
+END;  
+GO

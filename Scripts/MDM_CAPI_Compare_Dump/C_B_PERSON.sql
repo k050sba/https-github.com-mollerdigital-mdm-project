@@ -1,0 +1,1 @@
+SET NOCOUNT ON; select * from C_B_PERSON where exists(select 1 from C_B_PARTY where TYPE in('P') and COUNTRY_CODE in('NO', 'EE', 'LV', 'LT') and HUB_STATE_IND=1 and C_B_PERSON.PARTY_ID=C_B_PARTY.ROWID_OBJECT ) and  NOT(FIRST_NAME is null and SURNAME is  null) and HUB_STATE_IND=1 ORDER BY CAST(ROWID_OBJECT AS INT)

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-web>
+    <ejb-ref>
+        <ejb-ref-name>ejb/ApiCallBean</ejb-ref-name>
+	    <jndi-name>cmx.server.ApiCallBean</jndi-name>
+    </ejb-ref>
+    <ejb-ref>
+        <ejb-ref-name>ejb/RequestEjb</ejb-ref-name>
+	    <jndi-name>cmx.server.RequestEjb</jndi-name>
+    </ejb-ref>
+</jboss-web>

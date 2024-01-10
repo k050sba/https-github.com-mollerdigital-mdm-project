@@ -1,0 +1,4294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    project:   Informatica MDM
+    copyright: Informatica Corp. (c) 2003-2010.  All Rights Reserved.
+-->
+<xs:schema elementFormDefault="qualified"
+           attributeFormDefault="unqualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:annotation>
+        <xs:documentation>
+            This schema describes the structure of an XML configuration for an
+            Informatica MDM Hub Data Director application.
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:simpleType name="string1-50">
+        <xs:annotation>
+            <xs:documentation>
+                String with length of 1 to 50 characters.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="50"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="string1-100">
+        <xs:annotation>
+            <xs:documentation>
+                String with length of 1 to 100 characters.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="100"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="string1-150">
+        <xs:annotation>
+            <xs:documentation>
+                String with length of 1 to 150 characters.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="150"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="string1-255">
+        <xs:annotation>
+            <xs:documentation>
+                String with length of 1 to 255 characters.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="255"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="externalLink">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Link to an external URL that provides content to be embedded in a tab or on the Dashboard.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="param" type="externalLinkParam" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Parameter (static or dynamic) to be passed as part of the URL.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="customHTML" type="customHTML" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Custom HTML code that is inserted immediately after the JavaScript callout to the URL.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Unique identifier for the external link.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="displayName" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>
+                    Display name of the component.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="type" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Content type. One of the following values.
+                    IFRAME - the link must return content that can be
+                    embedded in an IFRAME.
+                    IGOOGLE - the link references javascript.to be exected.
+                </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="IFRAME"/>
+                    <xs:enumeration value="IGOOGLE"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="url" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The base URL to to be invoked. The URL may have parameters appended to it.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="customHTML">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Custom HTML code that is inserted immediately after the JavaScript callout to the URL.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="xs:string"/>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="externalLinkParam">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Parameter (static or dynamic) to be passed as part of the URL.
+                    Parameters are added after the URL as name=value. For example:
+                    http://host/xyz?name1=value1;ampname2=value2
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="name" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The name of the parameter.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="bddParamName" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>
+                    The name of the BDD parameter that supplies the value.
+                    Used this for dynamic parameters only.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="staticValue" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>
+                    Static value for the parameter.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="externalLinkAction">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Configuration of a custom action based on an HTTP request. This kind of custom action
+                    specifies an external URL. When the action is executed, BDD generates an HTTP request using this URL
+                    and displays the request result.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="externalLink" type="externalLink" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Definition of a custom action URL.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Name for the custom action. This name must be unique across all externalLinkActions.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="displayName" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Text for the menu item displayed in the 'More actions' menu.
+                    This value is used by default but can be overridden in the resource bundle.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="callback" type="xs:boolean" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Specifies whether this is a callback action.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="windowWidth" type="xs:int" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Could be specified for callback actions. The esult of a callback action is
+                    displayed in the modal window. This attribute specifies the width of this window.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="windowHeight" type="xs:int" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Could be specified for callback actions. The result of a callback action is
+                    displayed in the modal window. This attribute specifies the height of this window.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="userExit">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Configures a class that implements a user exit.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="className" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Fully-qualified name of the class that implements a user exit.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="actionName" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Name of the user exit action. This applies only to user defined operations.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="bddApplication">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    A Informatica Data Director (IDD) application is a dynamically-generated browser-based user interface
+                    for data in a Informatica MDM Hub.
+                </p>
+                <p>
+                    The configuration defines a BDD application that operates on one or more Informatica MDM Hub ORS databases. It
+                    defines how to structure and display data defined in the base objects in an ORS.
+                </p>
+                <p>
+                    There is a loose coupling between the ORS and the BDD configuration. The configuration references
+                    objects in the ORS by
+                    name. BDD validation is used to ensure that the referenced objects exist and that the configuration
+                    is logically valid.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="description" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Description for the BDD application.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="configSubVersion" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Configuration file sub version.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="encryptionKey" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                    Key used by the Blowfish encryption algorithm to encrypt external link action parameters 
+                    sent in the HTTP Get requests
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="help" type="help" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Determines what type of online help (generic and custom) is available in the BDD application.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="logicalOrsGroup" type="logicalOrsGroup" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Configuration of the BDD application for a specific ORS. A single BDD application can access
+                        data in multiple ORSes - one logicaOrsGroup for each. When the BDD application configuration is
+                        imported,
+                        the logical ORS is bound to a physical ORS.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="uiExtensions" type="uiExtensions" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Configuration of extensions to the BDD application user interface. These extensions can consist
+                        of
+                        additional top-level tabs and components embedded in the BDD Dashboard.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="charts" type="charts" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Configuration for the charts that are displayed on the BDD Dashboard.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="reports" type="reports" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Configuration for the reports that are displayed on the BDD Dashboard.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="tasks" type="tasks" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Configuration for the BDD task management system.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="string1-150" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The BDD application name. This must be unique within the Hub Server. Use only alphabetic characters and numbers - other characters are not allowed.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="displayName" type="string1-255" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The BDD application display name - a user-friendly name for the BDD application.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="defaultLocale" type="xs:string" default="en">
+            <xs:annotation>
+                <xs:documentation>
+                    The default locale used for the BDD application. If the BDD application has been localized to two or
+                    more languages,
+                    this is the locale that is used by default for new users. Each user can change the locale for their
+                    session. This
+                    selection is persisted as a user preference.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="sessionTimeoutMinutes" default="5">
+            <xs:annotation>
+                <xs:documentation>
+                    Determines how long (in minutes) a user session can be idle before that session is terminated.
+                </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:int">
+                    <xs:minInclusive value="1"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:element name="bddApplication" type="bddApplication">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    A Informatica Data Director (BDD) application is a dynamically generated browser-based user interface
+                    for data in a Informatica MDM Hub.
+                </p>
+                <p>
+                    The configuration defines a BDD application that operates on one or more Informatica Hub ORSes. It
+                    defines how to structure and display data defined in the base objects in an ORS.
+                </p>
+                <p>
+                    There is a loose coupling between the ORS and the BDD configuration. The configuration references
+                    objects in the ORS by
+                    name. BDD validation is used to ensure that the referenced objects exist and that the configuration
+                    is logically valid.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:complexType name="help">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Determines what type of online elp (generic and custom) is available in the BDD application.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="bddHelp" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>
+                    Determines whether the 'Help' link for generic BDD application help is displayed.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="customBddHelp" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>
+                    Determines whether the 'Custom Help' link for custom BDD application help is displayed. When true,
+                    the CustomBDDHelp.zip file must be included as part of the BDD application.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="logicalOrsGroup">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Configuration of the BDD application for a single ORS. All of the configuration within this element
+                    is specific to
+                    a single ORS. Here, usage of Hierarchy Manager (if any) is specified and subject areas are defined.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="hmConfiguration" type="hmConfiguration" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        If specified, determines how Hierarchy Manager is used for this ORS.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="sagGroups" type="sagGroups" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        The group of SAG groups in this ORS.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="versioning" type="versioning" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Placeholder for versioning settings for BOs from given ORS.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="subjectAreaGroup" type="subjectAreaGroup" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        The list of one or more subject area groups in this ORS. These are the top-level entities operated on in a
+                        BDD application.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="string1-100" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The name for the logical ORS group. This is used internally by BDD. It is not exposed to users of a
+                    BDD application.
+                    This is the name that is displayed in the BDD Configuration tool. The logical ORS is bound to a
+                    physical ORS in the Hub Store.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="sourceSystem" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The source system that is used for all BDD application operations. Any updates to ORS data made from 
+                    within the BDD application are associated with this source system.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    
+    <xs:complexType name="sagGroups">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Grouping tag for logical sag groups
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="sagLogicalGroup" type="sagLogicalGroup" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        The list of one or more SAG groups within this group.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="sagLogicalGroup">
+        <xs:annotation>
+			<xs:documentation>
+				<p>
+					Group of subject area groups. It's used for logial menu grouping
+					functionality.
+            	</p>
+			</xs:documentation>
+		</xs:annotation>
+        <xs:sequence>
+            <xs:element name="sagReference " type="sagReference " minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        The list of one or more subject area groups within this logical group.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="string1-100" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Name for the logical menu group.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="displayName" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    User-friendly name that is displayed to the BDD application user. This is used by default but can be overridden by
+                    settings in
+                    the resource bundle.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    
+    <xs:complexType name="sagReference">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Subject area group reference
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="sagName" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Name of subject area group
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="versioning">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Placeholder for versioning settings for IDD. It defines how version enabled Base Objects from the given ORS must be handled by UI.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="alwaysUseBVT" type="xs:boolean" use="optional" default="false">
+            <xs:annotation>
+                <xs:documentation>
+                    This parameter controls behavior of Effective date Pickers in IDD (Search, HM). If it is false then default value for effective date picker is empty.
+                    If alwaysUseBVT is true then effective date pickers appear with current date filled in. If user clear date then null will be passed to Domain level ad then to SIF call.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+
+    <xs:complexType name="subjectAreaGroup">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    The primary (root) base object of a subject area (also known as a composite object or hierarchical
+                    entity).
+                    This is a top-level entity operated on in a BDD application.
+                    When using a party model (one base object representing two or more entities), there can be more than
+                    one subject area
+                    within the subject area group.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="subjectArea" type="subjectArea" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        The list of one or more subject areas within this subject area group.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="string1-50" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Name for the subject area group. This name must be unique across all subject area groups defined in
+                    a BDD application.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="displayName" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    User-friendly name that is displayed to the BDD application user. This is used by default but can be overridden by
+                    settings in
+                    the resource bundle.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="primaryObjectUid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Identifies the base object that is the root for this subject area group.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="searchOnly" type="xs:boolean" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Indicates that this subject area group is used for search only. BDD application users cannot create records of this type,
+                    just search for them.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="subjectArea">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Composite object consisting of a primary base object with associated child base objects and
+                    configuration for searching and task operations.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="primaryObject" type="primaryObject" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Configuration of the primary or root base object for a subject area.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="poParent" type="poParent" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Configuration of the Primary Object's parent.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="externalLinkAction" type="externalLinkAction" minOccurs="0" maxOccurs="10">
+                <xs:annotation>
+                    <xs:documentation>
+                        Configuration of a custom action based on an HTTP request. This kind of custom action 
+                        specifies an external URL. When the action is executed, BDD generates an HTTP request using this URL
+                        and displays the request result.
+                        custom actions defined for a subject area are added in the subject area's 'More Actions' menu
+                        and in the Hierarchy View nodes context menu. 
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="childPlaceHolder" type="childPlaceHolder"/>
+                <xs:element name="one2ManyChild" type="one2ManyChild" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Configuration of a child object having a one-to-many relationship to the primary object.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="many2ManyChild" type="many2ManyChild" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Configuration of a child object having a many-to-many relationship to the primary object
+                            (related through a relationship table).
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="poPartOfChild" type="poPartOfChild" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Configuration of split attributes of the primary object wrapped into a separate child tab.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="remotePackageChild" type="remotePackageChild" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Configuration of a child tab referring to a remote package.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="externalLinkChild" type="externalLinkChild" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Configuration of a child tab containing a link to an external URL.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:choice>
+            <xs:element name="search" type="search">
+                <xs:annotation>
+                    <xs:documentation>
+                        Configuration of searching capabilities.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="match" type="match" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Determines how matching is used for the Find Duplicates operation.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="taskAssignmentConfig" type="taskAssignmentConfig" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Determines which Informatica MDM Hub role or user to which each kind of task is assigned for this subject
+                        area.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="userExits" type="userExit" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Configures user exit entry points.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="dataSecurity" type="dataSecurity" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Defines role-based row-level security for the subject area.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+        </xs:sequence>
+        <xs:attribute name="name" type="string1-50" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Name for the subject area.
+                    This name cannot contain spaces and must be unique across all subject areas in a BDD application.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="displayName" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    User-friendly name that is displayed to the BDD application user. This is used by default but can be overridden by
+                    settings in the resource bundle.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="showXREF" type="xs:boolean" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Boolean specifying whether to show cross referenes (XREFs). Default is false.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="defaultApprovalTaskType" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Default approval tasl type for subject area level.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="primaryObject">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Configuration of the root base object (as defined in the subject area group) for this subject area.
+                    When a subject area group has multiple subject areas, the primary object in each can be configured
+                    separately.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="subTypeQualifier" type="subTypeQualifier" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Used when a subject area group has multiple subject areas to determine which data in the base
+                        object
+                        applies to each subject area. If the hmEntityTypeUid is specified for this subject area, the
+                        values here must match the configuration of the Hierarchy Manager entity type foreign key.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="cleanseFunction" type="cleanseFunction" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Cleanse function that is used to cleanse, standardize, and/or validate data being entered from
+                        the BDD application.
+                        Cleanse for the primary object is called when the Save operation is invoked.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="layout" type="layout">
+                <xs:annotation>
+                    <xs:documentation>
+                        Configuration of the columns from the base object that are included in the user interface, and
+                        how they are laid out.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="label" type="label" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Determines how a label for this subject area is generated. The label is displayed in a tab
+                        header
+                        when a subject area data view is opened.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="hmManyHopLimits" type="hmManyHopLimits" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Element defines parameters of initial GetEntityGraph request for this Entity Type.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:sequence>
+                <xs:element name="externalLink" type="externalLink" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Definition of the custom data view.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+        </xs:sequence>
+        <xs:attribute name="hmEntityTypeUid" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    The Hierarchy Manager entity type that this subject area represents.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="hmFilterName" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Default filter for this Primary Object
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="hmDefaultLayout" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Default layout for displaying this Primary Object as an anchor entity in HM.
+                    Possible values are "hierarchy", "taxonomy", "tree", "network", "circular", "explorerView"
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="pmLinkColumnUid" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Column UID of a column available in layout that will be displayed as active link in Potential Matches table.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+
+    </xs:complexType>
+
+    <xs:complexType name="label">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Defines the columns and format to use to generate the label for this primary object.
+                    This is used, for example, as the name of the Data View tab.
+                </p>
+                <p>
+                    A sequence of columns is defined that can come from either the primary object or one of the logical child
+                    one-to-one objects.
+                    Example: A format pattern looks like: {0} : {2}, {1}. The columns are First Name and Last Name.
+                    The result might be: Person : Doe, John.
+                </p>
+                <p>
+                    {0} is always the subject area name. The columns in the label are {1}, {2}, ...
+                </p>
+                Three patterns can be defined:
+                <ul>
+                    <li>taskFormat - title for manual merge task.
+                    </li>
+                    <li>existsFormat - When a subject area object already exists and there is some data to populate the
+                        pattern. The default pattern is {0} - the subject area name.
+                    </li>
+                    <li>existsNoAttributesFormat - When a subject object already exists but there is no data to populate 
+                        the pattern. The default pattern is {0} - the subject area name.
+                    </li>
+                    <li>newFormat - When the subject area object is new. The default pattern is New {0} - New subject
+                        area name.
+                    </li>
+                </ul>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="column" type="labelColumn" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                      List of columns from the primary object and logical one-to-one child objects that are used as inputs to
+                      the label formats.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="taskFormat" type="xs:string" use="optional">
+          <xs:annotation>
+            <xs:documentation>
+              Format pattern used for a primary object that already exists in the ORS and has data in at least one of the labelColumns.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="existsFormat" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Format pattern used for a primary object that already exists in the ORS and has data in at least one
+                    of the labelColumns.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="existsNoAttributesFormat" type="xs:string" default="id={0}">
+            <xs:annotation>
+                <xs:documentation>
+                    Format pattern used for a primary object that already exists in the ORS and has NO data in any of
+                    the labelColumns.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="newFormat" type="xs:string" default="New {0}">
+            <xs:annotation>
+                <xs:documentation>
+                    Format pattern used for a new primary object.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="labelColumn">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                  Identifies a base object column to be used in the label. Format [BaseObjectName]|[ColumnName].
+                  Example: C_PARTY|DISPLAY_NAME
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="columnUid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    UID of a column. Example: C_PARTY|DISPLAY_NAME
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="childPlaceHolder">
+        <xs:attribute name="type" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The type of child place holder: xref, relationship or grandchildren. One of the following values:
+                    XREF - Placeholder of xref tab.
+                    RELATIONSHIP - Placeholder for relationship tab.
+                    POTENTIAL_MATCHES - Placeholder for potential matches tab.
+                    GRANDCHILD - Placeholder for grandchildren tab shown as a child tab
+                    (possible with logical one-2-one child's children).
+                </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="XREF"/>
+                    <xs:enumeration value="RELATIONSHIP"/>
+                    <xs:enumeration value="POTENTIAL_MATCHES"/>
+                    <xs:enumeration value="GRANDCHILD"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="nameRef" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Reference to logical one-2-one child's grandchild. This attribute is useful only
+                    with "GRANDCHILD" type.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="index" type="xs:int" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Determines the order of the child tabs in the subject area data view.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="one2ManyChild">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Child of the primary object, this identifies a base object that is related to the primary object
+                    through a direct one-to-many foreign key relationship.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="subTypeQualifier" type="subTypeQualifier" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Used when there is a need to bind base object child records of a particular type.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="cleanseFunction" type="cleanseFunction" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Cleanse function that is used to cleanse, standardize, and/or validate data being entered from
+                        the BDD application.
+                        Cleanse for the primary object is called when the Apply button is selected when adding or
+                        editing a child record.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="layout" type="layout">
+                <xs:annotation>
+                    <xs:documentation>
+                        Configuration of the columns from the base object that are included in the user interface, and
+                        how they are laid out.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="externalLinkAction" type="externalLinkAction" minOccurs="0" maxOccurs="10">
+                <xs:annotation>
+                    <xs:documentation>
+                        Configuration of a custom action based on an HTTP request. This kind of custom action 
+                        specifies an external URL. When this action is executed, BDD generates an HTTP request using this URL
+                        and displays the request result.
+                        custom actions defined for one2ManyChild are added to the child table's context menu. 
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="one2ManyChild" type="one2ManyChild" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Configuration of a grand child object having a one-to-many relationship to the child object.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="many2ManyChild" type="many2ManyChild" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Configuration of a grand child object having a many-to-many relationship to the child object
+                            (related through a relationship table).
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:choice>
+            <xs:element name="dataSecurity" type="dataSecurity" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Defines role-based row-level security for the subject area.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Name for the child object.
+                    This name cannot contain spaces and must be unique within the subject area - both in the subject area
+                    and all its children.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="displayName" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    User-friendly name that is displayed to the BDD application user. This is used by default but can be overridden by
+                    settings in the resource bundle.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="type" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The type of child object: one-to-many or logical one-to-one. One of the following values:
+                    ONE_2_MANY - This is a simple child object that is displayed in a tab at the bottom of the subject
+                    area data view.
+                    ONE_2_ONE - This is a child object where we expect that there will be just one child for each
+                    parent. This record is
+                    displayed in the form with the primary object data.
+                </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="ONE_2_ONE"/>
+                    <xs:enumeration value="ONE_2_MANY"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="uid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The UID of the child base object.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="mpcUid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The UID of the match path component that defines the path between the parent and child base objects.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="hidden" type="xs:boolean" use="optional" default="false">
+            <xs:annotation>
+                <xs:documentation>
+                    Determines whether this child is visible or not.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="index" type="xs:int" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Determines the order of the child tabs in the subject area data view.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="defaultView" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Determines default presentation of child - either Table or Form, default is Table
+                </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="table"/>
+                    <xs:enumeration value="form"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="poPartOfChild">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Represents split attributes of the primary object wrapped into a simulated child object and thus into
+                    a separate child tab.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="cleanseFunction" type="cleanseFunction" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Cleanse function that is used to cleanse, standardize, and/or validate data being entered from
+                        the BDD application.
+                        Cleanse for the primary object is called when the Apply button is selected when adding or
+                        editing a child record.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="layout" type="layout">
+                <xs:annotation>
+                    <xs:documentation>
+                        Configuration of the columns from the base object that are included in the user interface, and
+                        how they are laid out.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Name for the child object.
+                    This name cannot contain spaces and must be unique within the subject area - both in the subject area
+                    and all its children.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="displayName" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    User-friendly name that is displayed to the BDD application user. This is used by default but can be overridden by
+                    settings in the resource bundle.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="hidden" type="xs:boolean" use="optional" default="false">
+            <xs:annotation>
+                <xs:documentation>
+                    Determines whether this child is visible or not.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="index" type="xs:int" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Determines the order of the child tabs in the subject area data view.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="poParent">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Represents a parent of primary object wrapped into fake child object and thus into
+                    separate child tab.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="layout" type="layout">
+                <xs:annotation>
+                    <xs:documentation>
+                        Configuration of the columns from the base object that are included in the user interface, and
+                        how they are laid out.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Name for the child object.
+                    This name cannot contain spaces and must be unique within the subject area - both in the subject area
+                    and all its children.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="displayName" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    User-friendly name that is displayed to the BDD application user. This is used by default but can be overridden by
+                    settings in the resource bundle.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="uid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The UID of the parent base object.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="mpcUid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The UID of the match path component that defines the path between the parent and primary base objects.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="index" type="xs:int" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Determines the order of the child tabs in the subject area data view.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="remotePackageChild">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Remote package child.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="layout" type="layout">
+                <xs:annotation>
+                    <xs:documentation>
+                        Configuration of the columns from the remote package that are included in the user interface and
+                        how they are laid out.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Name for the child object.
+                    This name cannot contain spaces and must be unique within the subject area - both in the subject area
+                    and all it children.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="displayName" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    User-friendly name that is displayed to the BDD application user. This is used by default but can be overridden by
+                    settings in the resource bundle.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="uid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The UID of the remote package object.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="defaultView" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Determines default presentation of child - either Table or Form, default is Table
+                </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="table"/>
+                    <xs:enumeration value="form"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="index" type="xs:int" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Determines the order of the child tabs in the subject area data view.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="many2ManyChild">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Child of the primary object, this identifies a base object that is related to the primary object
+                    through a relationship table.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="subTypeQualifier" type="subTypeQualifier" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Used when there is a need to bind base object child records of a particular type. If the hmRelTypeUid is specified for this child, the
+                        values here must match the configuration of the Hierarchy Manager relationship type foreign key.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="cleanseFunction" type="cleanseFunction" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Cleanse function that is used to cleanse, standardize, and/or validate data being entered from
+                        the BDD application.
+                        Cleanse for the primary object is called when the Apply button is selected when adding or
+                        editing a child record.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="layout" type="layout">
+                <xs:annotation>
+                    <xs:documentation>
+                        Configuration of the columns from the base object that are included in the user interface, and
+                        how they are laid out.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="externalLinkAction" type="externalLinkAction" minOccurs="0" maxOccurs="10">
+                <xs:annotation>
+                    <xs:documentation>
+                        Configuration of a custom action based on an HTTP request. This kind of custom action 
+                        specifies an external URL. When the action is executed, BDD generates an HTTP request using this URL
+                        and displays the request result.
+                        custom actions defined for many2ManyChild are added to the child table's context menu. 
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="one2ManyChild" type="one2ManyChild" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Configuration of a grand child object having a one-to-many relationship to the child object.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="many2ManyChild" type="many2ManyChild" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Configuration of a grand child object having a many-to-many relationship to the child object
+                            (related through a relationship table).
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:choice>
+            <xs:element name="dataSecurity" type="dataSecurity" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Defines role-based row-level security for the subject area.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Name for the child object.
+                    This name cannot contain spaces and must be unique within the subject area - both in the subject area
+                    and all its children.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="displayName" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    User-friendly name that is displayed to the BDD application user. This is used by default but can be overridden by
+                    settings in the resource bundle.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="subjectAreaLinkColumn" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                  For Many2Many reference child one of its columns could be configured 
+                  to be used as link to child's SubjectArea. Column is shown as 
+                  hyperlink when child is displayed in the Child Tab, and click on the link
+                  opens selected child in new DataView Tab.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="type" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The type of child object: part of, or reference. One of the following values.
+                    PART_OF - The child object is owned by this subject area. When adding and editing children, the
+                    relationship and
+                    child records are updated.
+                    REFERENCE - The child object is another subject area. When adding and editing children, only the
+                    relationship record
+                    is updated. The child record must already exist and be found using a search.
+                </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="PART_OF"/>
+                    <xs:enumeration value="REFERENCE"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="uid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The UID of the child base object.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="mpcUid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The UID of the match path component that defines the path between the parent and child base objects.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="hidden" type="xs:boolean" use="optional" default="false">
+            <xs:annotation>
+                <xs:documentation>
+                    Determines whether this child is visible or not.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="hmEntityTypeUid" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    The Hierarchy Manager entity type that this many-to-many child represents.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="index" type="xs:int" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Determines the order of the child tabs in the subject area data view.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="defaultView" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Determines default presentation of child - either Table or Form, default is Table
+                </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="table"/>
+                    <xs:enumeration value="form"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="externalLinkChild">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Child tab containing a link to an external URL.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="externalLink" type="externalLink" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Definition of the URL displayed in this child tab.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Name for the link. This name must be unique across all externalLinkChildTabs.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="displayName" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Title of the child tab. This value is used by default but can be overridden in the resource bundle.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="index" type="xs:int" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Determines the order of the child tabs in the subject area data view.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="location" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Determines where this child should be shown: as a child tab or as a o2o panel.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="subTypeQualifier">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Defines the partition of data in a base object that belongs to this subject area.
+                    The partitioning is defined by a specific value in a column in the base object.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="filter" type="filter" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="columnUid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    UID of the subType column. Example: C_PARTY|PARTY_TYPE
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="filter">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Defines collection of possible values for subType column specified in subTypeQualifier.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="value" type="xs:string" minOccurs="1" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Defines string representation of a possible filter value.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="search">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Defines the configuration for searching within the subject area.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="matchColumns" type="matchColumns" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Constrains the match columns that are used with the searchMatch API.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="externalLinkAction" type="externalLinkAction" minOccurs="0" maxOccurs="10">
+                <xs:annotation>
+                    <xs:documentation>
+                        Configuration of a custom action based on an HTTP request. This kind of custom action 
+                        specifies an external URL. When the action is executed, BDD generates an HTTP request using this URL
+                        and displays the request result.
+                        custom actions defined for Search are added in the search results context menu.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="searchChild" type="searchChild" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Defines additional searchable objects. This allows for searching on data that is not part of the subject area.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="displayPackageUid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The MRM package that is used to display the results of a search.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="frozenColumns" type="xs:nonNegativeInteger" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Attribute defines initial number of Frozen Columns in search result table. Frozen Columns are the left most columns
+                    that are not included in horizontal scrolling of table content.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+   <xs:complexType name="searchChild">
+        <xs:annotation>
+            <xs:documentation>
+              <p>
+                Defines additional searchable objects. This allows for searching on data that is not part of the subject area.
+                This object must be linked by a match path component and will be displayed in the query builder.
+               </p>   
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="layout" type="layout" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Configuration of the columns from the object that are included in query builder.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Name for the search object.
+                    This name cannot contain spaces and must be unique within the subject area - both in the subject area
+                    and all its children.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="displayName" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    A user-friendly name that is displayed to the user. This is used by default but can be overriden by
+                    settings in the resource bundle.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="uid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The UID of the base object.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="mpcUid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The UID of the match path component that defines the path between the parent and child base objects.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="match">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Determines how matching is used for the Find Duplicates operation - what match rule set and match
+                    type to use
+                    and any restrictions on the match columns used.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="matchRuleSet" type="matchRuleSet" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Match rule set and match type to use.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="matchColumns" type="matchColumns" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Constrains the match columns that are used with the searchMatch API.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="matchColumns">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    List of one or more match columns that can be used with the searchMatch API. No match columns
+                    other than the ones in this list are used.
+                </p>
+                <p>
+                    This is useful, for example, in cases where a single base object column is used by
+                    multiple match column (such as one exact and one fuzzy) and you want to base the searches
+                    on just one of these match columns.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="matchColumn" type="matchColumn" minOccurs="1" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        UID of the match column. Example: C_PARTY|Person_Name.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="matchColumn">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Match column defined on the primary object.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="matchColumnUid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    UID of a match column. Example: C_PARTY|Person_Name
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="dataSecurity">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Defines role-based, row-level security for the subject area.
+                    Restricts access to data records in this subject area. Each restriction is assigned
+                    based on user role membership.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="securityFilter" type="securityFilter" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Data filter to be applied to one or more roles.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="securityFilter">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Data filter to be applied to one or more roles.
+                    The filter consists of a column value pair and is applied to each search request.
+                </p>
+                <p>
+                    Example: If column is C_ADDRESS|STATE_CD and value is 'CA', the following restriction
+                    is applied to each search request: AND STATE_CD = 'CA'
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="securityValue" type="securityValue" minOccurs="1" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Role to which the filter is applied.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="columnUid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    UID of a column. Example: C_ADDRESS|STATE_CD.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="securityValue">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Security value for security filter defined in the Informatica MDM Hub.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+         <xs:sequence>
+            <xs:element name="securityRole" type="securityRole" minOccurs="1" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Role to which the filter is applied.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="value" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    The value on which to filter data.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="affectFilter" type="xs:boolean" use="optional" default="true">
+            <xs:annotation>
+                <xs:documentation>
+                    The sign if this filter value will be applied or not.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="securityRole">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Security role defined in the Informatica MDM Hub.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="roleUid" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>
+                    UID of the security role.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="matchRuleSet">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    The match rule set and match type to use with the searchMatch API.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="saName" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    The name of the match rule set subject area which will show control which rule set to use. Example: Person.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="uid" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    UID of the match rule set. Example: C_PARTY|IDL.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="type" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The match type to use: One of the following values.
+                    AUTO - Use only auto match rules in the match rule set.
+                    BOTH - Use both auto and manual match rules in the match rule set.
+                    NONE - Use the search mode of the searchMatch API (not based on predefined match rules).
+                </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="BOTH"/>
+                    <xs:enumeration value="AUTO"/>
+                    <xs:enumeration value="NONE"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="layout">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Specifies which columns from the base object are used with this subject area,
+                    the order of the columns, and what kind of user interface components to use for each column.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="column" type="layoutColumn" minOccurs="1" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        List of one or more columns with layout attributes.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="columnsNum" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Specifies the number of columns of data per row for the layout when displaying data in a form.
+                </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:integer">
+                    <xs:minInclusive value="1"/>
+                    <xs:maxInclusive value="10"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="layoutColumn">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Single column from the base object with attributes determining how it is used in the user
+                    interface layout.
+                </p>
+                <p>
+                    Note: If the column is a foreign key to a lookup column, the component will be a lookup component
+                    (either a drop-down or a search) and the editStyle is ignored.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="columnLookup" type="columnLookup" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Defines information about the lookup table providing display values for a lookup column.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="columnStaticLookups" type="columnStaticLookups" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Defines a list of values for a lookup column.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="columnI18NLookup" type="columnI18NLookup" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Defines an associated table that provides localized display values for a lookup column.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="lookupDependency" type="lookupDependency" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Defines dependency between lookup columns (contents of one lookup depends on the value 
+                        selected in another lookup). 
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="siblingReference" type="siblingReference" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Declares this column as a 'Sibling reference'. This is a foreign key relationship between children related
+                        to the same PrimaryObject.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="parentReference" type="parentReference" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Defines the display value for the reference to a parent record from a grand child.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="defaultValue" type="defaultValue" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Defines default value for every Role
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="dataMask" type="dataMask" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Defines data mask pattern for every Role
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="valueMapping" type="valueMapping" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Defines a list of values for a column.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="columnUid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    UID of the column. Example: C_PARTY|DISPLAY_NAME.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="editStyle" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The style of component to use for this column.
+                    This is used in combination with the data type of the column.
+                    One of the following values:
+                    FIELD - a single-line text input field - use with CHAR, VARCHAR, NUMBER, and INT columns.
+                    TEXT_AREA - a multi-line text input field - use with CHAR and VARCHAR columns.
+                    CALENDAR - a data component - use with DATE columns.
+                    CALENDAR_LONG - a data and time component - use with DATE columns.
+                </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="FIELD"/>
+                    <xs:enumeration value="TEXT_AREA"/>
+                    <xs:enumeration value="CALENDAR"/>
+                    <xs:enumeration value="CALENDAR_LONG"/>
+                    <xs:enumeration value="CHECKBOX"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="horizontalStyle" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The relative horizontal sizing (width) of the component. 
+                    FULL_WIDTH is only used with TEXT_AREA and creates a component that spans columns
+                    in the layout, using the entire form width.
+                </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="SMALL"/>
+                    <xs:enumeration value="MEDIUM"/>
+                    <xs:enumeration value="LARGE"/>
+                    <xs:enumeration value="FULL_WIDTH"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="required" type="xs:boolean" use="optional" default="false">
+            <xs:annotation>
+                <xs:documentation>
+                    Identifies a column for which a BDD application user will be required to provide data.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="lineBreak" type="xs:boolean" use="optional" default="false">
+            <xs:annotation>
+                <xs:documentation>
+                    Identifies a column that should be last in the sequence. The next element should go to a new line.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="editable" type="xs:boolean" use="optional" default="true">
+            <xs:annotation>
+                <xs:documentation>
+                    Identifies a column that should be editable (allows manual input) or non editable in the Data View
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="hidden" type="xs:boolean" use="optional" default="false">
+            <xs:annotation>
+                <xs:documentation>
+                    Identifies a column that should not be displayed in the Data View. E.g. if needed to hide derived field.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="showInHMCompactView" type="xs:boolean" use="optional" default="false">
+            <xs:annotation>
+                <xs:documentation>
+                    This attributes specifies whether column is displayed in HM Compact View
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="showAsHyperlink" type="xs:boolean" use="optional" default="false">
+            <xs:annotation>
+                <xs:documentation>
+                    This attributes specifies whether text column is displayed as hiberlink or not
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    
+    <xs:complexType name="valueMapping">
+        <xs:annotation>
+            <xs:documentation>
+              <p>
+                Predefined list of values for checkbox and radio buttons.
+                These are the only values that will be stored in the HUB. 
+              </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="mappingItem"
+                        type="mappingItem" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Defines a single value from list.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="mappingItem">
+        <xs:annotation>
+            <xs:documentation>
+              <p>
+                The value which can be stored in the HUB.
+              </p>    
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="domainValue" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Column value (the value we send to HUB).
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="uiValue" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Column value (the value we send to HUB).
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="selected" type="xs:boolean" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    The sing that this value corresponds to SELECTED CHECKBOX (truth value)
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="siblingReference">
+        <xs:annotation>
+            <xs:documentation>
+              <p>
+                Declares this column as a 'sibling reference'. This is a foreign key relationship between children related
+                to the same PrimaryObject.
+              </p><p>  
+                A 'sibling reference' column can be defined in the PrimaryObject, One2One children
+                and in the direct One2Many and Many2Many children. This column must be a foreign
+                key referencing one of the direct One2Many or Many2Many children.
+              </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="label" type="label" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Defines how to generate the label for the referenced record. 
+                        The text displayed in the 'Sibling reference' column is combination of fields 
+                        from the referenced child record. 
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="childName" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Name of the child referenced by this column.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="parentReference">
+        <xs:annotation>
+            <xs:documentation>
+              <p>
+                Defines the display value for the reference to a parent record from a grand child.
+              </p><p>
+                A grandchild's layout can contain a column which is the foreign key to
+                the its parent. This element configures a label that is 
+                not just the ROWID_OBJECT value, but a combination of fields from the parent
+             </p>   
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="label" type="label" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Defines how to generate the label that is 
+                        displayed in the 'parent reference' column.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="defaultValue">
+        <xs:annotation>
+            <xs:documentation>
+              <p>
+                Defines default value for the field and the list of Roles assigned to this value
+              </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="securityRole" type="securityRole" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Role to which default value is assigned
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="value" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Default Value itself
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    
+    <xs:complexType name="dataMask">
+        <xs:annotation>
+            <xs:documentation>
+              <p>
+                Defines pattern for masking field value and the list of Roles assigned to this value
+              </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="securityRole" type="securityRole" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Role to which mask pattern is assigned. If no roles assigned then we consider
+                        pattern applicable for all roles except admin.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="value" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Pattern for masking. It is defined as a Regular Expression. Expression in parantheses will be
+                    replaced with asterisk (*). Ex. (.+).... pattern will replace with * all but last four
+                    characters. So if value was 123456789, it is masked as *****6789
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="lookupDependency">
+        <xs:annotation>
+            <xs:documentation>
+              <p>
+                Defines a dependency between lookup columns (contents of one lookup depends on the value 
+                selected in another lookup). 
+              </p>   
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="dependsOn" type="xs:string"
+                      use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    UID of layout column which should be used as master lookup column.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="lookupFKUid" type="xs:string"
+                      use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    In dependent lookups data model there is foreign key relation between 2 lookup tables. 
+                    This attribute specifies which column in the dependent lookup table is used as foreign key.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="columnLookup">
+        <xs:annotation>
+            <xs:documentation>
+              <p>
+                Defines information about the lookup table that provides display
+                values for a lookup column.
+              </p>    
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="subTypeQualifier"
+                        type="subTypeQualifier" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Used when a lookup table contains display names for
+                        several different subject areas. In this case
+                        data retrieved from the lookup table should be
+                        filtered using values stored in the special subtype filter
+                        column.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="lookupFKUid" type="xs:string"
+                      use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    UID of the code column in the lookup table.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="lookupNameUid" type="xs:string"
+                      use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    UID of the display name column in the lookup table.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="columnStaticLookups">
+        <xs:annotation>
+            <xs:documentation>
+              <p>
+                Defines a list of values for a lookup column.
+              </p>   
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="columnStaticLookup"
+                        type="columnStaticLookup" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Defines a single lookup code and display name for a
+                        lookup column.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="columnStaticLookup">
+        <xs:annotation>
+            <xs:documentation>
+              <p>
+                Defines a single lookup code and display name for a lookup
+                column.
+              </p>    
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="code" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Lookup code (value stored in the lookup column).
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="name" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Lookup display name (user-friendly string representing
+                    the lookup code).
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="languageCode" type="xs:string"
+                      use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Language code - ISO 2 character language code. This
+                    attribute is specified when the element defines a localized
+                    display name.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="countryCode" type="xs:string"
+                      use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Country code - ISO 2 character country code. This attribute is
+                    specified when the element defines a localized display name.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="columnI18NLookup">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Defines an associated base object table that provides localized display names for a lookup column.
+                </p>
+                <p>
+                    The table of localized display names must contain the following columns (may have any name):
+                    <ul>
+                        <li>Language code – ISO 2 character language code
+                        </li>
+                        <li>Country code – ISO 2 character country code (optional – localization can be based on
+                            language alone)
+                        </li>
+                        <li>Foreign key to the lookup table – a foreign key to the code column in the lookup table.
+                        </li>
+                        <li>Localized String – the localized lookup display value.
+                        </li>
+                    </ul>
+                </p>
+                <p>
+                    The BDD application first looks for a lookup name in the localized table
+                    based on the BDD application user's selected locale (language and / or country).
+                    If a name is not found, then the lookup name from the lookup table is used.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="subTypeQualifier"
+                        type="subTypeQualifier" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Used when the lookup table contains display names for
+                        several different subject areas. In this case,
+                        data retrieved from the lookup table should be
+                        filtered using values stored in the special subtype filter
+                        column.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="languageCdUid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    UID of the column in the localization table that contains the language code.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="countryCdUid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    UID of the column in the localization table that contains the country code.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="lookupFKUid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    UID of the column in the lookup table that contains the lookup values.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="localizedNameUid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    UID of the column in the localization table that contains the localized display name.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="cleanseInput">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    List of one or more columns from the base object mapped to inputs to the cleanse function.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="cleanseColumn" type="cleanseColumn" minOccurs="1" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Base object column mapped to a cleanse function input.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="cleanseFunction">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Cleanse function that is used to cleanse, standardize, and/or validate data being entered from the
+                    BDD application.
+                </p>
+                <p>
+                    Cleanse function that is used for validation must have an output parameter named
+                    'validationStatus'. The status is
+                    a simple string with validation errors separated by ';'. Each validation error has the format
+                    &lt;inputParameterName&gt;.&lt;message&gt;. &lt;inputParameterName&gt; identifies the cleanse input
+                    parameter and &lt;message&gt; is
+                    a message to be displayed to the BDD application user. Validation errors must be resolved by the user before data
+                    can be persisted.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="cleanseInput" type="cleanseInput" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        List of one or more columns from the base object mapped to inputs to the cleanse function.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="cleanseOutput" type="cleanseOutput" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        List of outputs from the cleanse function mapped to base object columns.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="cleanseFunctionUid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    UID of the cleanse function.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="cleanseOutput">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    List of outputs from the cleanse function mapped to base object columns.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="cleanseColumn" type="cleanseColumn" minOccurs="1" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Base object column mapped to a cleanse function output.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="cleanseColumn">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Mapping between a base object column and a cleanse function input or output parameter.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="columnUid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    UID of the base object column.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="parameterName" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Name of a cleanse function input or output parameter.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="taskAssignmentConfig">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Determines the Informatica MDM Hub role or user to which each kind of task is assigned to for a subject area.
+                </p>
+                <p>
+                    Either a user or role must be specified. If both are specified, the role takes precedence.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="securityRole" type="securityRole" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        List of zero or more Security Roles that task type can be assigned to.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="task" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Name of the task.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="user" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Name of a user to which tasks of this type may be assigned.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="roleUid" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    UID of a role to which tasks of this type may be assigned. The task assignment engine will
+                    assign a task to a user with this role.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+
+    <xs:complexType name="hmConfiguration">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Determines how Hierarchy Manager is used in this logical ORS group.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="hmOneHopLimits" type="hmOneHopLimits" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Limits that are applied to all one-hop fetch operations.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="hmManyHopLimits" type="hmManyHopLimits" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        The upper limits that can be configured for many-hop fetch operations.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="hmRelationshipTypes" type="hmRelationshipTypes" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        The list of one or more HM relationships in this ORS.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="userExits" type="userExit" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Configures user exit entry points.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="hmFilter" type="hmFilter" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        The list of one or more HM filters in this ORS.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="externalLinkAction" type="externalLinkAction" minOccurs="0" maxOccurs="10">
+                <xs:annotation>
+                    <xs:documentation>
+                        Configuration of a custom action based on an HTTP request. This kind of custom action 
+                        specifies an external URL. When the action is executed, BDD generates an HTTP request using this URL
+                        and displays the request result. Custom actions defined for a HM are added in the HM tab's 
+                        'More Actions' menu. 
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="hmConfigurationUid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    UID of an Hierarchy Manager configuration. Example: Default|Master
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="enableAddRel" type="xs:boolean" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Controls whether add and edit relationship capabilities are available in the Hierarchy View.  Defaults to true.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="compactViewChildrenNumber" type="xs:integer" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Limits number of children objects displayed in HM Compact View dialog  
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="simpleNodeLimit" type="xs:integer" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Limits number of HM entities that are displayed with full graphics. When HM graph exceeded this value
+                    simple graphics are used for displaying entity nodes. If simpleNodeLimit was not specified then default value of 300
+                    is used.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="hmRelationshipTypes">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                   A set of relationship types.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="hmRelationshipType" type="hmRelationshipType" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                         Configuration for a relationship type.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+
+    </xs:complexType>
+
+    <xs:complexType name="hmRelationshipType">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                   Configuration for a relationship type. Controls add and update operations on relationships of this type in the Hierarchy view.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="cleanseFunction" type="cleanseFunction" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Cleanse function that is used to cleanse, standardize, and/or validate data being entered from
+                        the BDD application.
+                        Cleanse for the primary object is called when the Save operation is invoked.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="layout" type="layout">
+                <xs:annotation>
+                    <xs:documentation>
+                        Configuration of the columns from the base object that are included in the user interface, and
+                        how they are laid out.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="userExit" type="userExit" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        User exit for HM relationship's type.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="hmRelationshipUid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Identifies HM relationship.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="hmOneHopLimits">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Limits that are applied to all one-hop fetch operations.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="totalRels" type="xs:integer" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    The maximum number of relationships that can be returned by a get one-hop operation.
+                    This applies for all one-hop operations in the BDD application and cannot be overridden by a BDD application user.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="hmManyHopLimits">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    The upper limits that can be configured for many-hop fetch operations.
+                    These are the upper limits that are available to the BDD application user in the Show Many Hops dialog.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="hops" type="xs:integer" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The number of hops (or levels) away from the starting entity to traverse.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="relsPerEntity" type="xs:integer" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    The maximum number of relationships to fetch for any single entity.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="totalRels" type="xs:integer" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    The maximum total number of relationships to fetch in a single request.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="hmFilter">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Hm Filter Configuration contains settings for HM filter.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="showActiveRelOnly" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        true if only active relationships should be shown in the graph and false otherwise
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="showPending" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        true if pending objects are allowed to show
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="hideUnconnectedEntities" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        true if unconnected entities should be hidden and false otherwise
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="getParents" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        true if relationships with "parent" direction should be retrieved and false otherwise
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="getChildren" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        true if relationships with "children" direction should be retrieved and false otherwise
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="getUndirected" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        true if relationships with "undirected" direction should be retrieved and false otherwise
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="getBidirectional" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        true if relationships with "bidirectional" direction should be retrieved and false otherwise
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="getUnknown" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        true if relationships with "unknown" direction should be retrieved and false otherwise
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="enabledRelationshipsUids" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        list of relationship UIDs that should be shown in the graph
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="enabledHierarchiesUids" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        list of hierarchies UIDs that should be shown in the graph
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    filter's name - unique string that is used to refer to this model
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="displayName" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    display name of the filter - should be used in combobox on UI as a default display name
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="uiExtensions">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Configuration of extensions to the BDD application user interface. These extensions can consist of
+                    additional top-level tabs and components embedded in the BDD Dashboard.
+                </p>
+                <p>
+                    Each tab and Dashboard item is based on a link to an external URL that provides the content to be
+                    embedded.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="topLevelTab" type="topLevelTab" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        List of top-level tabs to be added to the BDD application.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="dashboard" type="dashboard" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        List of links to components to embed in the Dashboard of the BDD application.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="logicalOrsGroupName" type="string1-100" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    References logical ORS group name, which is used to store SAM settings for dashboard's portlets and
+                    top level custom tab.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="topLevelTab">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Top-level tab to be added to the BDD application (next to the Dashboard and Data tabs).
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="externalLink" type="externalLink" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        The external link to the content to embed in this tab.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Name for the tab. This name must be unique across all top-level tabs.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="displayName" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    User-friendly name that is displayed to the BDD application user. This is used by default but can be overridden by
+                    settings in
+                    the resource bundle.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="dashboard">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Component to be embedded in the the BDD application Dashboard.
+                    Components are shown below any charts that are configured for the BDD application.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="externalLink" type="externalLink" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        The external link to the content to embed in the Dashboard.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="dashboardLayout" type="dashboardLayout" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Layout of the Dashboard.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="dashboardLayout">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Layout of the Dashboard.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="dashboardLayoutItem" type="dashboardLayoutItem" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identifies a Dashboard component (item).
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="columns" type="xs:decimal" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Number of columns in the layout.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="dashboardLayoutItem">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    An item in the Dashboard layout item.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="name" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Name of the layout item.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="type" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Type of layout item
+                </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="TASKS"/>
+                    <xs:enumeration value="CHART"/>
+                    <xs:enumeration value="REPORT"/>
+                    <xs:enumeration value="EXTERNAL_LINK"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="columns" type="xs:string" default="1">
+            <xs:annotation>
+                <xs:documentation>
+                    Number of columns that that the item should occupy. To occupy an entire row, specify the asterisk (*) character.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+
+   <xs:complexType name="reports">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Configuration for the reports that are displayed on the BDD Dashboard.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="reportDefinition" type="reportDefinition" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        List of report defintions.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="reportDefinition">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Defines a report - the report style and the data to use.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="reportParamDefinitions" type="reportParamDefinitions" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        List of external parameters for reporting
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The report name. This must be unique.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="displayName" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>
+                    User-friendly name for the reporting.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="format" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Report types - html or image.
+                </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="html"/>
+                    <xs:enumeration value="image"/>
+                </xs:restriction>
+            </xs:simpleType>
+       </xs:attribute>
+        <xs:attribute name="template" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>
+                    The name of template for reporting.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="logicalOrsGroupName" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>
+                    The name of a BDD logicalOrsGroup.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    
+    <xs:complexType name="reportParamDefinitions">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    An external parameters for reporting
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="name" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The name of parameter.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="value" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    User-friendly description of the parameter. It will be presented in the Dashboard as the label for user entry.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="description" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>
+                    The description of parameter.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="visible" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>
+                    Visibility.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="type" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Data type of parameter - date, string or number.
+                </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="date"/>
+                    <xs:enumeration value="number"/>
+                    <xs:enumeration value="string"/>
+                    <xs:enumeration value="Boolean"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+
+
+    <xs:complexType name="charts">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Configuration for the charts that are displayed on the BDD Dashboard.
+                    This includes datasource and chart definitions.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="datasource" type="datasource" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        List of datasource that can be used in the following chart defintions.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="chartDefinition" type="chartDefinition" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        List of chart defintions.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="datasource">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    A source for data that is used in chart generation.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="id" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Unique identifier for the datasource.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="appServerDatasource" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Generates the JNDI name of an application server datasource. 
+                    The datasource name will be:  “jdbc/siperian-appServerDatasource-ds”
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="chartDefinition">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Defines a chart - the chart style and the data to use.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="chartParam" type="chartParam" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        List of external parameters used in the SQL query.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="sqlStatement" type="sqlStatement" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        The SQL query used to retrieve chart’s data from the database.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The chart name. This must be unique.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="displayName" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>
+                    User-friendly name for the chart.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="type" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Chart types - line, bar or pie.
+                </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="line"/>
+                    <xs:enumeration value="bar"/>
+                    <xs:enumeration value="pie"/>
+                </xs:restriction>
+            </xs:simpleType>
+       </xs:attribute>
+        <xs:attribute name="datasourceId" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>
+                    The id of the datasource to use for the SQL query.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="logicalOrsGroupName" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>
+                    The name of a BDD logicalOrsGroup. This identifies an ORS to connect to for the SQL query.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="xDataType">
+            <xs:annotation>
+                <xs:documentation>
+                    The type of the values shown on the X-axis of a line or bar chart - date, char or number.
+                </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="number"/>
+                    <xs:enumeration value="date"/>
+                    <xs:enumeration value="string"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="xDescription" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>
+                    X-axis description for the chart.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="yDescription" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>
+                    Y-axis description for the chart.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="chartParam">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    An external parameter used in the SQL query.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="name" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The name of parameter. This name must be used in the SQL query prefixed by the “:” character
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="description" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    User-friendly description of the parameter. It will be presented in the Dashboard as the label for user entry.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="type" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Data type of parameter - date, char or number.
+                </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="date"/>
+                    <!-- only date is supported at this time
+                    <xs:enumeration value="number"/>
+                    <xs:enumeration value="string"/>
+                    -->
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="sqlStatement">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    The SQL query used to retrieve the chart’s data from the database.
+                    The following predefined parameters may be used in a SQL query:
+                    <ul><li>:p_user_name - Current user logged into the BDD application.</li>
+                    <li>:p_bdd_name - Name of the BDD application instance.</li>
+                    <li>:p_cursor - Cursor variable (out parameter) used to get data when a dataset is generated dynamically.</li></ul>
+                    <b>Note:</b> These predefined parameters should not be described by chartParam nodes.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="type">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Query type - default is SELECT. One of the following values:  
+                            'SELECT' is a simple static query.
+                            'CALL' is a dynamically generated query that must use the Oracle cursor variable “:p_cursor” to return the chart dataset.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="SELECT"/>
+                            <xs:enumeration value="CALL"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="tasks">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Definition of the tasks and actions used in the BDD application.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="actionType" type="actionType" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        List of action types used in the BDD application.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="taskType" type="taskType" minOccurs="1" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        List of task types used in the BDD application.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="includeUnassignedTasks" type="xs:boolean" use="optional" default="false">
+            <xs:annotation>
+                <xs:documentation>
+                    This attribute controls whether unassigned tasks shoudl be available in the inbox at a BDD instance level.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="taskType">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Defines the behavior of a task type.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="description" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Description of the task type.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="action" type="action" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        List of actions that are available to a BDD application user in the context of this task.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="taskTypeId" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    The unique id of the task type. For the Lombardi integration, this contains the GUID of the workflow process that is used
+                    to start the process on the Teamworks server.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="name" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The unique name of the task type. The name attribute of a task type is for internal use and should never be changed.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="displayName" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    User-friendly name of the task type.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="defaultApproval" type="xs:boolean" use="optional" default="false">
+            <xs:annotation>
+                <xs:documentation>
+                    This attribute must be set to true on exactly one task type.
+                    The task type that has a value of true for this attribute is the task type that will be created when the “Send for Approval” button is clicked in the data view in the BDD application.
+                    Note: If multiple task types have this attribute set to true, then the task type created when the “Send for Approval” button is clicked can have unpredictable results.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="creationType" use="optional" default="CREATE">
+            <xs:annotation>
+                <xs:documentation>
+                    Determines where a task can be created. This attribute should not be modified for existing tasks. This is used to determine where in the BDD a task can be created. 
+                    One of the following values:
+                   - CREATE - Tasks are created when the BDD application user chooses Create Task from a menu in the BDD. <br/>
+                   - MERGE - Only one task type must have this designation.
+                   A Task is created when the BDD application user chooses to create a task in the Potential Matches view.<br/>
+                   - UNMERGE - Only one task type must have this designation.
+                   Tasks are created when the BDD application user chooses to create a task in the Cross References dialog.<br/>
+                   - NONE - Tasks cannot be created by a user from the BDD.
+                   This designation means that these task types can  be created only as the result of a workflow.<br/>
+                </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="CREATE"/>
+                    <xs:enumeration value="MERGE"/>
+                    <xs:enumeration value="UNMERGE"/>
+                    <xs:enumeration value="NONE"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="displayType" use="optional" default="NORMAL">
+            <xs:annotation>
+                <xs:documentation>
+                    Determines how a task is displayed when it is opened. This attribute should not be modified for the default task definition.
+                    One of the following values:
+                   - NORMAL - Tasks are opened in the data view with no special display requirements.
+                   - MERGE - Tasks are opened in the data view with the potential matches tab selected and the match record highlighted.
+                   - UNMERGE - Tasks are opened in the data view with the XREF dialog open and the specified XREF highlighted.
+                </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="NORMAL"/>
+                    <xs:enumeration value="MERGE"/>
+                    <xs:enumeration value="UNMERGE"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="pendingBVT" type="xs:boolean" use="optional" default="false">
+            <xs:annotation>
+                <xs:documentation>
+                    This attribute specifies whether the data view should include pending XREF values when constructing the BVT view in the BDD. 
+                    When set to true, any pending XREFs that are referenced by the task will be included in the BVT view, 
+                    the result being that the BDD application user gets a “what-if” view of the record as it would appear if the pending XREF were made active. 
+                    This is useful for approving pending changes and trying to decide whether the resulting record would be correct.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="dataUpdateType" use="optional" default="ACTIVE">
+            <xs:annotation>
+                <xs:documentation>
+                    Specifies the type of update for this action. One of the following values.
+                    - ACTIVE - Any modifications made to the record shown in the task view before executing this action are persisted in the ACTIVE state.
+                    - PENDING - Any modifications made to the record shown in the task view before executing this action are persisted in the PENDING state.
+                    This value is used for all approval flows to persist changes as pending until they are approved.
+                </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="ACTIVE"/>
+                    <xs:enumeration value="PENDING"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="actionType">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Defines a type of action that can be invoked from within a task.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="description" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Description of the action type.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="class" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Specifies the Java class that is used to execute the action. This attribute must NOT be modified. You currently cannot add custom action handlers.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The unique name of the action type.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="displayName" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    User-friendly name for the action type.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="manualReassign" type="xs:boolean" use="optional" default="false">
+            <xs:annotation>
+                <xs:documentation>
+                    When this attribute is set to true, the BDD application user is prompted to select a specific user for assignment 
+                    of the task before the action is performed. This is used, for example, when reassigning a task to another user.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="closeTaskView" type="xs:boolean" use="optional" default="true">
+            <xs:annotation>
+                <xs:documentation>
+                    When this attribute is set to true, the tab in which the BDD application user was working when performing this action will be closed, and the user will be returned to the Dashboard page.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="cancelTask" type="xs:boolean" use="optional" default="false">
+            <xs:annotation>
+                <xs:documentation>
+                    When this attribute is set to true, the task is canceled when this action is performed.  Consequently, the task is completely deleted and not recoverable  
+                    and any pending changes associated with the task will be permanently deleted.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="action">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    An action performed in the context of a task. 
+                    The name identifies what action type to invoke.
+                    The targetTask identifies what task type to transition to.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="targetTask" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Defines which task type to transition to after this action has been performed.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The name of the action type for this action.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+
+    <!-- User exits Configuration elements -->
+
+    <xs:complexType name="ueConfig">
+        <xs:annotation>
+            <xs:documentation>
+                A User Exit configuration.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="sagUserExits" type="sagUserExits">
+                <xs:annotation>
+                    <xs:documentation>
+                        A reference to Subject Area Group.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="hmUserExits" type="hmUserExits">
+                <xs:annotation>
+                    <xs:documentation>
+                        A reference to HM Configuration.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>
+                    Name for User Exit configuration.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="sagUserExits">
+        <xs:annotation>
+            <xs:documentation>
+                A reference to Subject Area Group.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="saUserExits" type="saUserExits" minOccurs="1" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        A reference to Subject Area.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>
+                    A reference to a particular Subject Area Group's name.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="saUserExits">
+        <xs:annotation>
+            <xs:documentation>
+                A reference to Subject Area.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="userExits" type="userExit" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Configures user exit entry points.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>
+                    A reference to a particular Subject Area's name.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="hmUserExits">
+        <xs:annotation>
+            <xs:documentation>
+                A particluar reference to HM Configuration.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="hmRelationshipTypeUserExits" type="hmRelationshipTypeUserExits" minOccurs="1"
+                        maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        A reference to HM Relationship type.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="userExits" type="userExit" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Configures user exit entry points.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="uid" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>
+                    The UID of referenced HM Configuration.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="orsUid" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>
+                    The ORS UID of referenced HM Configuration.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="hmRelationshipTypeUserExits">
+        <xs:annotation>
+            <xs:documentation>
+                A particluar reference to HM Relationship type.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="userExit" type="userExit" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Configures user exit entry points.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="uid" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>
+                    The UID of referenced HM Relationship type.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:element name="userExitsConfig" type="ueConfig">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    A User Exit configuration that can be deployed as part of BDC component's configuration.
+                    The configuration defines properties for a particular BDC component that is being bound to
+                    a real BDD instance. The main purpose of this configuration is to override or extend User Exits
+                    defined in the BDD configuration file.
+                </p>
+                <p>
+                    The structure of this file is a complementary thing to a main BDD configuration. It does reference
+                    particluar entities from BDD configuration and does not have any sence being not bound to a BDD
+                    instance.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+
+    <!-- Layout Configuration elements -->
+
+    <xs:complexType name="layoutConfig">
+        <xs:annotation>
+            <xs:documentation>
+                Configuration for a set of layouts that are defined on the top of main BDD application.
+                These layout would be used with BDC, for example, to define alternate layouts to use
+                for Subject Areas displayed in BDC components.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="sagLayout" type="sagLayout" minOccurs="1" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        A reference to Subject Area Group.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Name for the layout.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="sagLayout">
+        <xs:annotation>
+            <xs:documentation>
+                Layout for a Subject Area Group.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="saLayouts" type="saLayouts" minOccurs="1" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        List of layouts for the Subject Areas in this Subject Area Group.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="string1-50">
+            <xs:annotation>
+                <xs:documentation>
+                    Name of a Subject Area Group.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="saLayouts">
+        <xs:annotation>
+            <xs:documentation>
+                Layout for a Subject Area.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="saLayout" type="saLayout" minOccurs="1" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        List of layout configurations for this Subject Area.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="string1-50">
+            <xs:annotation>
+                <xs:documentation>
+                    Name of a Subject Area.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="saLayout">
+        <xs:annotation>
+            <xs:documentation>
+                Configures the layout for a Subject Area. There can be multiple layouts for the same Subject
+                Area defined with different names.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="tabLayout" type="tabLayout" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Configures the base object columns used in the layout, the order of those columns and the layouts of child objects.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Name for the layout.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="compactMode" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>
+                    Set to true for a compact version of the layout, when limited space is available in the user interface.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="tabLayout">
+        <xs:annotation>
+            <xs:documentation>
+                Configures the base object columns used in the layout, the order of those columns and the layouts of child objects.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="column" type="column" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        List of columns with layout attributes.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="tabLayout" type="tabLayout" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        List of layouts for child base objects.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>
+                    Name of the object (primary or child object) that this layout is bound to in the BDD application.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="columnNum" default="2">
+            <xs:annotation>
+                <xs:documentation>
+                    The number of columns of data per row for the layout when displaying data in a form.
+                </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:int">
+                    <xs:minInclusive value="1"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="column">
+        <xs:annotation>
+            <xs:documentation>
+                Identifies a column in a BDD application.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="columnUid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    UID of a column.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:element name="layoutConfig" type="layoutConfig">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    A layout configuration that can be deployed as part of BDC component's configuration. The
+                    configuration defines properties for a particular BDC component that is being bound to a real BDD
+                    instance. The main purpose of this configuration is to override or extend layout properties
+                    defined in the BDD configuration file.
+                </p>
+                <p>
+                    The structure of this file is a complementary thing to a main BDD configuration. It does reference
+                    particluar entities from BDD configuration and does not have any sence being not bound to a BDD
+                    instance.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+
+    <!-- External Link Configuration elements -->
+
+    <xs:element name="externalLinkActionsConfig">
+        <xs:complexType>
+            <xs:annotation>
+                <xs:documentation>
+                    <p>
+                        Configuration of an External Link Action for use with a BDC component.
+                        Describes custom actions based on an HTTP request. This kind of custom action
+                        specifies an external URL. When the action is executed, BDD generates an HTTP request using this
+                        URL and displays the request result.
+                    </p>
+                    <p>
+                        The configuration defines properties for a particular BDC component that is bound to a
+                        BDD application. The overrides or extends External Link
+                        Actions defined in the BDD configuration.
+                    </p>
+                    <p>
+                        The is dependent on the BDD application it is bound to. It 
+                        references entities from that configuration.
+                    </p>
+                </xs:documentation>
+            </xs:annotation>
+            <xs:sequence>
+                <xs:element name="sagExternalLinkActions" type="sagExternalLinkActions" minOccurs="1" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Name of the Subject Area Group this external link is bound to.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="hmExternalLinkActions" type="hmExternalLinkActions" minOccurs="0"
+                            maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Name of the HM configuration (optional).
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="name" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        Name for the external link action.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="sagExternalLinkActions">
+        <xs:annotation>
+            <xs:documentation>
+                External link actions for a Subject Area Group.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="saExternalLinkActions" type="saExternalLinkActions" minOccurs="1" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Name of a Subject Area.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="string1-50">
+            <xs:annotation>
+                <xs:documentation>
+                    Name of a Subject Area Group.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="saExternalLinkActions">
+        <xs:annotation>
+            <xs:documentation>
+                External link actions for a Subject Area.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="externalLinkAction" type="externalLinkAction" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Configures actions for subject area
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="string1-50">
+            <xs:annotation>
+                <xs:documentation>
+                    Name of a Subject Area.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="hmExternalLinkActions">
+        <xs:annotation>
+            <xs:documentation>
+                External link actions for an HM configuraiton.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="externalLinkAction" type="externalLinkAction" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Configures actions for HM configuration
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="uid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    UID of the HM configuration.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="logicalOrsGroupName" type="string1-100">
+            <xs:annotation>
+                <xs:documentation>
+                    Name of the logical ORS group.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+
+    <!-- IDC Configuration elements -->
+
+    <xs:element name="bdcConfiguration">
+        <xs:annotation>
+            <xs:documentation>
+                <p>
+                    Informatica Data Control (IDC) is part of BDD application that can be reused in third party web
+                    applications.
+                </p>
+                <p>
+                    The configuration defines properties for particular BDC component, registered in concrete BDD
+                    application.
+                </p>
+            </xs:documentation>
+        </xs:annotation>
+      <xs:complexType>
+        <xs:sequence>
+          <xs:element name="property" type="property" maxOccurs="unbounded" />
+        </xs:sequence>
+      </xs:complexType>  
+    </xs:element>
+
+    <xs:complexType name="property" mixed="true">
+        <xs:annotation>
+            <xs:documentation>
+                      Represents arbitrary key-value configuration property
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="name" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <!-- IDC Proactive Match component configuration -->
+
+    <xs:element name="pmcConfig">
+        <xs:annotation>
+            <xs:documentation>
+                <p>Contains configuration of specific Control instance.</p>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="matchRuleSet" type="matchRuleSet" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="mdmEntity" type="mdmEntity" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="systemName" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        <p>Contains the name of a source system, as it registered in MDM.</p>
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="import" type="xs:boolean" use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        <p>Import is disabled if this attribute is false.</p>
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="mdmEntity">
+        <xs:sequence>
+            <xs:element name="columnMapping" type="columnMapping" minOccurs="1" maxOccurs="unbounded"/>
+            <xs:element name="mdmEntity" type="mdmEntity" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="sourceEntity" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Entity identifier in the source system
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="name" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Name of target Subject Area
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="maxOccur" type="xs:int" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Maximum number of children to export (if set, othewise all children are exported).
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="columnMapping">
+        <xs:annotation>
+            <xs:documentation>
+                Mapping of a column in the source system to Subject Area column
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="sourceColumn" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Source system column name
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="columnUid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    Subject Area column identifier in a form "COLUMN.C_PARTY|FIRST_NAME"
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+</xs:schema>

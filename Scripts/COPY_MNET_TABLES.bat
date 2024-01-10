@@ -1,0 +1,1 @@
+sqlcmd -S SQLP2AGMDM\MDMP2 -U SQLMDMP -P sQ!mdmPP -i "D:\Scripts\MNET_COPY_TABLES.sql" -o D:\Scripts\PROD_MNET_COPY_TABLES_OUTLOG.txt

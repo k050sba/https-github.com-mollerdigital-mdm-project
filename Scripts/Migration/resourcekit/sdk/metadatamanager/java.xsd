@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+Siperian Hub Server
+copyright: Siperian Inc. (c) 2003-2006.  All rights reserved.
+
+Primitive Java types used in Siperian Change List XML
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://java.sun.com"
+           targetNamespace="http://java.sun.com">
+    <xs:simpleType name="java.lang.Boolean">
+    	<xs:restriction base="xs:string">
+		</xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="java.lang.Long">
+    	<xs:restriction base="xs:string">
+		</xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="java.lang.Float">
+    	<xs:restriction base="xs:string">
+		</xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="java.lang.Double">
+    	<xs:restriction base="xs:string">
+		</xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="java.util.Date">
+    	<xs:restriction base="xs:string">
+		</xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="java.lang.String">
+    	<xs:restriction base="xs:string">
+		</xs:restriction>
+    </xs:simpleType>
+</xs:schema>

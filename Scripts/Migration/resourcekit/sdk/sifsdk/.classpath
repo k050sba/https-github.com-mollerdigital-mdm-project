@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="source/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/axis-1.3/wsdl4j-1.5.1.jar"/>
+	<classpathentry kind="lib" path="lib/axis-1.3/axis-1.3.jar"/>
+	<classpathentry kind="lib" path="lib/axis-1.3/axis-schema-1.3.jar"/>
+	<classpathentry kind="lib" path="lib/axis-1.3/commons-discovery-0.2.jar"/>
+	<classpathentry kind="lib" path="lib/axis-1.3/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="lib" path="lib/axis-1.3/jaxrpc.jar"/>
+	<classpathentry kind="lib" path="lib/axis-1.3/saaj.jar"/>
+	<classpathentry kind="lib" path="lib/j2ee-1.3/j2ee-1.3.jar"/>
+	<classpathentry kind="lib" path="lib/commons-httpclient-2.0.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="lib/siperian-api.jar"/>
+	<classpathentry kind="lib" path="lib/siperian-common.jar"/>
+	<classpathentry kind="lib" path="lib/siperian-server-pkiutil.jar"/>
+	<classpathentry kind="lib" path="lib/informatica-bpm-adapter.jar"/>
+	<classpathentry kind="lib" path="lib/castor-1.1.1-xml.jar"/>
+	<classpathentry kind="lib" path="lib/weblogic/wlthint3client.jar"/>
+	<classpathentry kind="lib" path="lib/websphere/rsadapterspi.jar"/>
+	<classpathentry kind="output" path="output/classes"/>
+</classpath>

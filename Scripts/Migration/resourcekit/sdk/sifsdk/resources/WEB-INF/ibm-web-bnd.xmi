@@ -1,0 +1,9 @@
+<webappbnd:WebAppBinding xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:webappbnd="webappbnd.xmi" xmlns:commonbnd="commonbnd.xmi" xmlns:webapplication="webapplication.xmi" xmlns:common="common.xmi" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmi:id="WebAppBinding_1" virtualHostName="default_host">
+  <webapp href="WEB-INF/web.xml#CMXWebInterface"/>
+  <ejbRefBindings xmi:id="ApiCallBean_Binding" jndiName="cmx.server.ApiCallBean"> 
+    <bindingEjbRef href="WEB-INF/web.xml#ApiCallBean_Ref"/> 
+  </ejbRefBindings>
+  <ejbRefBindings xmi:id="RequestEjb_Binding" jndiName="cmx.server.RequestEjb"> 
+    <bindingEjbRef href="WEB-INF/web.xml#RequestEjb_Ref"/> 
+  </ejbRefBindings>
+</webappbnd:WebAppBinding>

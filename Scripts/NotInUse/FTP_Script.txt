@@ -1,0 +1,5 @@
+option batch continue
+option confirm off
+open Bring
+lcd D:\Informatica\9.6.1\tomcat\bin\target
+put *%TIMESTAMP#dd.mm.yyyy%.out* /til_ajourhold/

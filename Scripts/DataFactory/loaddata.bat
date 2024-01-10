@@ -1,0 +1,2 @@
+@echo off
+for /l %%x in (7, 1, 64) do echo \\no000010smdt01\K050RPA\Brreg\DF\Prod\df%%x.0.json > \\no000010smdt01\K050RPA\Brreg\readfile.txt & D:\Informatica\10.2.0\server\bin\infacmd wfs startworkflow -sn DIS_PROD -dn Domain_MOLLER_PROD -un Administrator -pd !nfaAdmp0 -wf wf_DF_IDL_LOAD -a Application_wf_DF_IDL_LOAD & timeout /t 300

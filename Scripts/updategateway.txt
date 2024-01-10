@@ -1,0 +1,1 @@
+D:\Informatica\10.2.0\server\bin\Infacmd updateGatewayInfo -dn Domain_MOLLER_PROD -dg no000010smdip2:6005

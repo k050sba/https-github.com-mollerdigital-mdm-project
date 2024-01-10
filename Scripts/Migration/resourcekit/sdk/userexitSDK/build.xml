@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<project name="Informatica MDM User Exit SDK Services" default="build" basedir=".">
+
+    <property name="sip.title" value="Informatica MDM User Exit SDK Services" />
+
+    <property file="my.properties" />
+    <property environment="env" />
+    <property name="custom.jar" value="output/Custom-UserExit-Adapter.jar" />
+
+	<!--
+		Set the classpath used for compiling the application source
+	-->
+    <path id="classpath.compile">
+        <fileset dir="lib" includes="*.jar" />
+    </path>
+
+	<!--
+		Clean the output directory by removing all compiled code and output files
+	-->
+    <target name="clean" description="Cleans up all files created by the build">
+        <delete dir="output" failonerror="false" />
+    </target>
+
+	<!--
+		Build the jar file for custom BPM adapter
+	-->
+    <target name="build" depends="compile" description="compile">
+        <jar jarfile="${custom.jar}" filesonly="true">
+            <fileset dir="output/classes" includes="**/*"/>            
+        </jar>
+    </target>
+
+	<!--
+		Compile the source code
+	-->
+    <target name="compile" description="compile">
+        <mkdir dir="output/classes" />
+        <javac srcdir="source" destdir="output/classes" includes="**" excludes="" debug="on" optimize="off" deprecation="on">
+            <classpath refid="classpath.compile" />
+        </javac>
+    </target>
+
+</project>
+

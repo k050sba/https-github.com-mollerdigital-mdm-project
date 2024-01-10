@@ -1,0 +1,1 @@
+SET NOCOUNT ON; select * from C_B_CAR_SRC_COUNTRY where exists (select 1 from C_B_CAR where C_B_CAR.ROWID_OBJECT=C_B_CAR_SRC_COUNTRY.CAR_ID and HUB_STATE_IND=1 ) and HUB_STATE_IND=1 order by CAST(ROWID_OBJECT as INT)

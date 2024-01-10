@@ -1,0 +1,7 @@
+com.informatica.mdm.bpm
+com.informatica.mdm.bpm.data
+com.informatica.mdm.bpm.enumeration
+com.informatica.mdm.bpm.idd
+com.informatica.mdm.bpm.interfaces
+com.informatica.mdm.bpm.interfaces.data
+com.informatica.mdm.bpm.interfaces.taskdef

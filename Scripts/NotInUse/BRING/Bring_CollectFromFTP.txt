@@ -1,0 +1,6 @@
+option batch continue
+option confirm off
+open Bring
+lcd D:\Bring_Load_History
+get /fra_ajourhold/*%TIMESTAMP#yyyymmdd%.txt* 
+exit

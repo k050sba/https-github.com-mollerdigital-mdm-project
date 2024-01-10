@@ -1,0 +1,6 @@
+<webappext:WebAppExtension xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:webappext="webappext.xmi" xmlns:webapplication="webapplication.xmi" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmi:id="WebAppExtension_2" reloadInterval="5" reloadingEnabled="true" defaultErrorPage="error.jsp" additionalClassPath="" fileServingEnabled="true" directoryBrowsingEnabled="true" serveServletsByClassnameEnabled="false">
+  <webApp href="WEB-INF/web.xml#WebApp_ID"/>
+  <extendedServlets xmi:id="ServletExtension_1">
+    <extendedServlet href="WEB-INF/web.xml#Servlet_9"/>
+  </extendedServlets>
+</webappext:WebAppExtension>

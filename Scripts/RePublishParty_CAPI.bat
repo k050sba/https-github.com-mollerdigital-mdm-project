@@ -1,0 +1,2 @@
+sqlcmd -S SQLP3AGMDM\MDMP3 -U SQLMDMP -P sQ!mdmPP -i "D:\Scripts\RePublishParty_CAPI.sql" -o "D:\Scripts\RePublishParty_CAPI_output.log"
+type "D:\Scripts\RePublishParty_CAPI_output.log" >> "D:\Scripts\RePublishParty_CAPI.log"

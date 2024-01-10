@@ -1,0 +1,1 @@
+delete from MDM_CM..C_S_DF_CAR_REL_CLOSE_LES where PKEY_SRC_OBJECT in ( select PKEY_SRC_OBJECT from MDM_CM..C_S_DF_CAR_REL_CLOSE_LES as relclose where exists(select 1 from MDM_CM..C_REL_PARTY_CAR as relcar where ROLE_CODE='L' and RELATION_END_DATE is null and relcar.ROWID_OBJECT=relclose.ROWID_OBJECT and relcar.LAST_ROWID_SYSTEM not in('DATAFACTORY ')) );

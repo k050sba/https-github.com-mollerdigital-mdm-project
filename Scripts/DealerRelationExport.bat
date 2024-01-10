@@ -1,0 +1,1 @@
+sqlcmd -S SQLP2AGMDM\MDMP2 -U SQLMDMP -P sQ!mdmPP -i "D:\Scripts\DealerRelation\DealerRelationExport.sql" -o PSEXEC \\NO000010SMDMP1\"PROD_CACHE_BCK\DealerRelationExport\DealerRelationExport.csv"

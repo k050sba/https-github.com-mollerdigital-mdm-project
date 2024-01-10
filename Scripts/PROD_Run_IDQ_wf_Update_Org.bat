@@ -1,0 +1,3 @@
+@echo off
+REM Vi har fjernet Start foran linjen nedenfor
+D:\Informatica\10.2.0\server\bin\infacmd wfs startworkflow -sn DIS_PROD -dn Domain_MOLLER_PROD -un Administrator -pd !nfaAdmp0 -wf wf_Update_Org -a app_wf_Update_Org

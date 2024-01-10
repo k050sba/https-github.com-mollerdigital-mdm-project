@@ -1,0 +1,1 @@
+echo %date% %time%>>D:\Scripts\write_file.log

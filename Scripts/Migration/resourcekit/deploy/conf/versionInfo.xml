@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<ProductVersion>
+
+    <ComponentVersion>
+        <internal-name>SIPERIAN_SAMPLE</internal-name>
+        <external-name>Informatica MDM Sample</external-name>
+        <internal-version>10.3.0.0.0.0.7448529</internal-version>
+        <external-version>10.3</external-version>
+        <start-install-time>2019-01-17 12:26:02</start-install-time>
+        <end-install-time>2019-01-17 12:26:46</end-install-time>
+        <install-status>verified</install-status>
+    </ComponentVersion>
+
+</ProductVersion>
+

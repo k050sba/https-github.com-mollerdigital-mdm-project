@@ -1,0 +1,3666 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Siperian Hub Server
+copyright: Siperian Inc. (c) 2003-2018.  All rights reserved.
+
+Generated at 2018-09-25 14:23:58.793
+Sipieran Change List XML Schema version 10.3
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:complexType name="ColumnDataType">
+<xs:attribute name="length" type="xs:integer"/>
+<xs:attribute name="precision" type="xs:integer"/>
+<xs:attribute name="scale" type="xs:integer"/>
+<xs:attribute name="typeName" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ChangeList">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="changes">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element name="addSystemBaseObject" type="AddSystemBaseObject"/>
+<xs:element name="addSystemBaseObjectColumn" type="AddSystemBaseObjectColumn"/>
+<xs:element name="addSystemPackage" type="AddSystemPackage"/>
+<xs:element name="addSystemForeignKey" type="AddSystemForeignKey"/>
+<xs:element name="addSystem" type="AddSystem"/>
+<xs:element name="modifySystem" type="ModifySystem"/>
+<xs:element name="deleteSystem" type="DeleteSystem"/>
+<xs:element name="addBaseObject" type="AddBaseObject"/>
+<xs:element name="modifyBaseObject" type="ModifyBaseObject"/>
+<xs:element name="deleteBaseObject" type="DeleteBaseObject"/>
+<xs:element name="addBaseObjectColumn" type="AddBaseObjectColumn"/>
+<xs:element name="modifyBaseObjectColumn" type="ModifyBaseObjectColumn"/>
+<xs:element name="deleteBaseObjectColumn" type="DeleteBaseObjectColumn"/>
+<xs:element name="addForeignKey" type="AddForeignKey"/>
+<xs:element name="deleteForeignKey" type="DeleteForeignKey"/>
+<xs:element name="modifyForeignKey" type="ModifyForeignKey"/>
+<xs:element name="modifyCascadeUnmerge" type="ModifyCascadeUnmerge"/>
+<xs:element name="addMatchPathComponent" type="AddMatchPathComponent"/>
+<xs:element name="modifyMatchPathComponent" type="ModifyMatchPathComponent"/>
+<xs:element name="deleteMatchPathComponent" type="DeleteMatchPathComponent"/>
+<xs:element name="addMatchPathComponentFilter" type="AddMatchPathComponentFilter"/>
+<xs:element name="modifyMatchPathComponentFilter" type="ModifyMatchPathComponentFilter"/>
+<xs:element name="deleteMatchPathComponentFilter" type="DeleteMatchPathComponentFilter"/>
+<xs:element name="addMatchColumn" type="AddMatchColumn"/>
+<xs:element name="modifyMatchColumn" type="ModifyMatchColumn"/>
+<xs:element name="deleteMatchColumn" type="DeleteMatchColumn"/>
+<xs:element name="addMatchRuleSet" type="AddMatchRuleSet"/>
+<xs:element name="modifyMatchRuleSet" type="ModifyMatchRuleSet"/>
+<xs:element name="deleteMatchRuleSet" type="DeleteMatchRuleSet"/>
+<xs:element name="addPrimaryKeyMatchRule" type="AddPrimaryKeyMatchRule"/>
+<xs:element name="modifyPrimaryKeyMatchRule" type="ModifyPrimaryKeyMatchRule"/>
+<xs:element name="deletePrimaryKeyMatchRule" type="DeletePrimaryKeyMatchRule"/>
+<xs:element name="modifyImmutableSystem" type="ModifyImmutableSystem"/>
+<xs:element name="addValidationRule" type="AddValidationRule"/>
+<xs:element name="modifyValidationRule" type="ModifyValidationRule"/>
+<xs:element name="deleteValidationRule" type="DeleteValidationRule"/>
+<xs:element name="addQueryGroup" type="AddQueryGroup"/>
+<xs:element name="modifyQueryGroup" type="ModifyQueryGroup"/>
+<xs:element name="deleteQueryGroup" type="DeleteQueryGroup"/>
+<xs:element name="addQuery" type="AddQuery"/>
+<xs:element name="deleteQuery" type="DeleteQuery"/>
+<xs:element name="modifyQuery" type="ModifyQuery"/>
+<xs:element name="addCleanseLibrary" type="AddCleanseLibrary"/>
+<xs:element name="modifyCleanseLibrary" type="ModifyCleanseLibrary"/>
+<xs:element name="deleteCleanseLibrary" type="DeleteCleanseLibrary"/>
+<xs:element name="addCleanseFunction" type="AddCleanseFunction"/>
+<xs:element name="deleteCleanseFunction" type="DeleteCleanseFunction"/>
+<xs:element name="modifyCleanseFunction" type="ModifyCleanseFunction"/>
+<xs:element name="addStagingTable" type="AddStagingTable"/>
+<xs:element name="deleteStagingTable" type="DeleteStagingTable"/>
+<xs:element name="modifyStagingTable" type="ModifyStagingTable"/>
+<xs:element name="addStagingTableColumn" type="AddStagingTableColumn"/>
+<xs:element name="modifyStagingTableColumn" type="ModifyStagingTableColumn"/>
+<xs:element name="deleteStagingTableColumn" type="DeleteStagingTableColumn"/>
+<xs:element name="addLandingTable" type="AddLandingTable"/>
+<xs:element name="modifyLandingTable" type="ModifyLandingTable"/>
+<xs:element name="deleteLandingTable" type="DeleteLandingTable"/>
+<xs:element name="addLandingTableColumn" type="AddLandingTableColumn"/>
+<xs:element name="modifyLandingTableColumn" type="ModifyLandingTableColumn"/>
+<xs:element name="deleteLandingTableColumn" type="DeleteLandingTableColumn"/>
+<xs:element name="modifySystemColumnTrust" type="ModifySystemColumnTrust"/>
+<xs:element name="addDistinctSystem" type="AddDistinctSystem"/>
+<xs:element name="modifyDistinctSystem" type="ModifyDistinctSystem"/>
+<xs:element name="deleteDistinctSystem" type="DeleteDistinctSystem"/>
+<xs:element name="addPackage" type="AddPackage"/>
+<xs:element name="modifyPackage" type="ModifyPackage"/>
+<xs:element name="deletePackage" type="DeletePackage"/>
+<xs:element name="modifyPackageColumn" type="ModifyPackageColumn"/>
+<xs:element name="addMapping" type="AddMapping"/>
+<xs:element name="modifyMapping" type="ModifyMapping"/>
+<xs:element name="deleteMapping" type="DeleteMapping"/>
+<xs:element name="addDependentObject" type="AddDependentObject"/>
+<xs:element name="modifyDependentObject" type="ModifyDependentObject"/>
+<xs:element name="deleteDependentObject" type="DeleteDependentObject"/>
+<xs:element name="addDependentObjectColumn" type="AddDependentObjectColumn"/>
+<xs:element name="modifyDependentObjectColumn" type="ModifyDependentObjectColumn"/>
+<xs:element name="deleteDependentObjectColumn" type="DeleteDependentObjectColumn"/>
+<xs:element name="addRole" type="AddRole"/>
+<xs:element name="deleteRole" type="DeleteRole"/>
+<xs:element name="modifyRole" type="ModifyRole"/>
+<xs:element name="addResourceGroup" type="AddResourceGroup"/>
+<xs:element name="modifyResourceGroup" type="ModifyResourceGroup"/>
+<xs:element name="deleteResourceGroup" type="DeleteResourceGroup"/>
+<xs:element name="addSecureResource" type="AddSecureResource"/>
+<xs:element name="deleteSecureResource" type="DeleteSecureResource"/>
+<xs:element name="addBatchGroup" type="AddBatchGroup"/>
+<xs:element name="modifyBatchGroup" type="ModifyBatchGroup"/>
+<xs:element name="deleteBatchGroup" type="DeleteBatchGroup"/>
+<xs:element name="addIndex" type="AddIndex"/>
+<xs:element name="modifyIndex" type="ModifyIndex"/>
+<xs:element name="deleteIndex" type="DeleteIndex"/>
+<xs:element name="addHmProfile" type="AddHmProfile"/>
+<xs:element name="modifyHmProfile" type="ModifyHmProfile"/>
+<xs:element name="deleteHmProfile" type="DeleteHmProfile"/>
+<xs:element name="addHmSandbox" type="AddHmSandbox"/>
+<xs:element name="modifyHmSandbox" type="ModifyHmSandbox"/>
+<xs:element name="deleteHmSandbox" type="DeleteHmSandbox"/>
+<xs:element name="addHmBlob" type="AddHmBlob"/>
+<xs:element name="modifyHmBlob" type="ModifyHmBlob"/>
+<xs:element name="deleteHmBlob" type="DeleteHmBlob"/>
+<xs:element name="addHmHierarchy" type="AddHmHierarchy"/>
+<xs:element name="modifyHmHierarchy" type="ModifyHmHierarchy"/>
+<xs:element name="deleteHmHierarchy" type="DeleteHmHierarchy"/>
+<xs:element name="addHmEntityType" type="AddHmEntityType"/>
+<xs:element name="modifyHmEntityType" type="ModifyHmEntityType"/>
+<xs:element name="deleteHmEntityType" type="DeleteHmEntityType"/>
+<xs:element name="addHmEntityObject" type="AddHmEntityObject"/>
+<xs:element name="modifyHmEntityObject" type="ModifyHmEntityObject"/>
+<xs:element name="revertHmEntityObject" type="RevertHmEntityObject"/>
+<xs:element name="addHmRelationshipObject" type="AddHmRelationshipObject"/>
+<xs:element name="revertHmRelationshipObject" type="RevertHmRelationshipObject"/>
+<xs:element name="addHmRelationshipType" type="AddHmRelationshipType"/>
+<xs:element name="modifyHmRelationshipType" type="ModifyHmRelationshipType"/>
+<xs:element name="deleteHmRelationshipType" type="DeleteHmRelationshipType"/>
+<xs:element name="addHmPackage" type="AddHmPackage"/>
+<xs:element name="deleteHmPackage" type="DeleteHmPackage"/>
+<xs:element name="addHmColumnPackage" type="AddHmColumnPackage"/>
+<xs:element name="modifyHmColumnPackage" type="ModifyHmColumnPackage"/>
+<xs:element name="deleteHmColumnPackage" type="DeleteHmColumnPackage"/>
+<xs:element name="addMatchPopulation" type="AddMatchPopulation"/>
+<xs:element name="modifyMatchPopulation" type="ModifyMatchPopulation"/>
+<xs:element name="addSystemTable" type="AddSystemTable"/>
+<xs:element name="systemTableColumn" type="SystemTableColumn"/>
+<xs:element name="modifyColumn" type="ModifyColumn"/>
+<xs:element name="orderColumn" type="OrderColumn"/>
+<xs:element name="orderMatchColumn" type="OrderMatchColumn"/>
+<xs:element name="orderValidationRule" type="OrderValidationRule"/>
+<xs:element name="addMessageTrigger" type="AddMessageTrigger"/>
+<xs:element name="modifyMessageTrigger" type="ModifyMessageTrigger"/>
+<xs:element name="deleteMessageTrigger" type="DeleteMessageTrigger"/>
+<xs:element name="addSubjectArea" type="AddSubjectArea"/>
+<xs:element name="modifySubjectArea" type="ModifySubjectArea"/>
+<xs:element name="deleteSubjectArea" type="DeleteSubjectArea"/>
+<xs:element name="addTaskAssignmentConf" type="AddTaskAssignmentConf"/>
+<xs:element name="modifyTaskAssignmentConf" type="ModifyTaskAssignmentConf"/>
+<xs:element name="deleteTaskAssignmentConf" type="DeleteTaskAssignmentConf"/>
+<xs:element name="addDataSecurityFilter" type="AddDataSecurityFilter"/>
+<xs:element name="deleteDataSecurityFilter" type="DeleteDataSecurityFilter"/>
+<xs:element name="addCOConfig" type="AddCOConfig"/>
+<xs:element name="modifyCOConfig" type="ModifyCOConfig"/>
+<xs:element name="deleteCOConfig" type="DeleteCOConfig"/>
+<xs:element name="addCORoot" type="AddCORoot"/>
+<xs:element name="modifyCORoot" type="ModifyCORoot"/>
+<xs:element name="deleteCORoot" type="DeleteCORoot"/>
+<xs:element name="addCOLookup" type="AddCOLookup"/>
+<xs:element name="modifyCOLookup" type="ModifyCOLookup"/>
+<xs:element name="deleteCOLookup" type="DeleteCOLookup"/>
+<xs:element name="addCOChildOne" type="AddCOChildOne"/>
+<xs:element name="modifyCOChildOne" type="ModifyCOChildOne"/>
+<xs:element name="deleteCOChildOne" type="DeleteCOChildOne"/>
+<xs:element name="addCOChildMany" type="AddCOChildMany"/>
+<xs:element name="modifyCOChildMany" type="ModifyCOChildMany"/>
+<xs:element name="deleteCOChildMany" type="DeleteCOChildMany"/>
+<xs:element name="addCOReferenceOne" type="AddCOReferenceOne"/>
+<xs:element name="modifyCOReferenceOne" type="ModifyCOReferenceOne"/>
+<xs:element name="deleteCOReferenceOne" type="DeleteCOReferenceOne"/>
+<xs:element name="addCOField" type="AddCOField"/>
+<xs:element name="modifyCOField" type="ModifyCOField"/>
+<xs:element name="deleteCOField" type="DeleteCOField"/>
+<xs:element name="addCORelationship" type="AddCORelationship"/>
+<xs:element name="modifyCORelationship" type="ModifyCORelationship"/>
+<xs:element name="deleteCORelationship" type="DeleteCORelationship"/>
+<xs:element name="addMetaFieldFilter" type="AddMetaFieldFilter"/>
+<xs:element name="modifyMetaFieldFilter" type="ModifyMetaFieldFilter"/>
+<xs:element name="deleteMetaFieldFilter" type="DeleteMetaFieldFilter"/>
+<xs:element name="addMetaNodeFilter" type="AddMetaNodeFilter"/>
+<xs:element name="modifyMetaNodeFilter" type="ModifyMetaNodeFilter"/>
+<xs:element name="deleteMetaNodeFilter" type="DeleteMetaNodeFilter"/>
+<xs:element name="addMetaAllow" type="AddMetaAllow"/>
+<xs:element name="modifyMetaAllow" type="ModifyMetaAllow"/>
+<xs:element name="deleteMetaAllow" type="DeleteMetaAllow"/>
+<xs:element name="addMetaDeny" type="AddMetaDeny"/>
+<xs:element name="modifyMetaDeny" type="ModifyMetaDeny"/>
+<xs:element name="deleteMetaDeny" type="DeleteMetaDeny"/>
+<xs:element name="addMetaFilterValue" type="AddMetaFilterValue"/>
+<xs:element name="modifyMetaFilterValue" type="ModifyMetaFilterValue"/>
+<xs:element name="deleteMetaFilterValue" type="DeleteMetaFilterValue"/>
+<xs:element name="addMetaAllowNoRecords" type="AddMetaAllowNoRecords"/>
+<xs:element name="modifyMetaAllowNoRecords" type="ModifyMetaAllowNoRecords"/>
+<xs:element name="deleteMetaAllowNoRecords" type="DeleteMetaAllowNoRecords"/>
+<xs:element name="addMetaDenyNoRecords" type="AddMetaDenyNoRecords"/>
+<xs:element name="modifyMetaDenyNoRecords" type="ModifyMetaDenyNoRecords"/>
+<xs:element name="deleteMetaDenyNoRecords" type="DeleteMetaDenyNoRecords"/>
+<xs:element name="addMetaOtherValues" type="AddMetaOtherValues"/>
+<xs:element name="modifyMetaOtherValues" type="ModifyMetaOtherValues"/>
+<xs:element name="deleteMetaOtherValues" type="DeleteMetaOtherValues"/>
+<xs:element name="addMetaRole" type="AddMetaRole"/>
+<xs:element name="modifyMetaRole" type="ModifyMetaRole"/>
+<xs:element name="deleteMetaRole" type="DeleteMetaRole"/>
+<xs:element name="addMetaOtherRoles" type="AddMetaOtherRoles"/>
+<xs:element name="modifyMetaOtherRoles" type="ModifyMetaOtherRoles"/>
+<xs:element name="deleteMetaOtherRoles" type="DeleteMetaOtherRoles"/>
+<xs:element name="addMetaDefaultValue" type="AddMetaDefaultValue"/>
+<xs:element name="modifyMetaDefaultValue" type="ModifyMetaDefaultValue"/>
+<xs:element name="deleteMetaDefaultValue" type="DeleteMetaDefaultValue"/>
+<xs:element name="addCSConfig" type="AddCSConfig"/>
+<xs:element name="modifyCSConfig" type="ModifyCSConfig"/>
+<xs:element name="deleteCSConfig" type="DeleteCSConfig"/>
+<xs:element name="addCSExceptionHandler" type="AddCSExceptionHandler"/>
+<xs:element name="modifyCSExceptionHandler" type="ModifyCSExceptionHandler"/>
+<xs:element name="deleteCSExceptionHandler" type="DeleteCSExceptionHandler"/>
+<xs:element name="addCSStep" type="AddCSStep"/>
+<xs:element name="modifyCSStep" type="ModifyCSStep"/>
+<xs:element name="deleteCSStep" type="DeleteCSStep"/>
+<xs:element name="addCSService" type="AddCSService"/>
+<xs:element name="modifyCSService" type="ModifyCSService"/>
+<xs:element name="deleteCSService" type="DeleteCSService"/>
+<xs:element name="addCSExecute" type="AddCSExecute"/>
+<xs:element name="modifyCSExecute" type="ModifyCSExecute"/>
+<xs:element name="deleteCSExecute" type="DeleteCSExecute"/>
+<xs:element name="addCSInput" type="AddCSInput"/>
+<xs:element name="modifyCSInput" type="ModifyCSInput"/>
+<xs:element name="deleteCSInput" type="DeleteCSInput"/>
+<xs:element name="addCSOutput" type="AddCSOutput"/>
+<xs:element name="modifyCSOutput" type="ModifyCSOutput"/>
+<xs:element name="deleteCSOutput" type="DeleteCSOutput"/>
+<xs:element name="addCSParameter" type="AddCSParameter"/>
+<xs:element name="modifyCSParameter" type="ModifyCSParameter"/>
+<xs:element name="deleteCSParameter" type="DeleteCSParameter"/>
+<xs:element name="addCSParameterDefinition" type="AddCSParameterDefinition"/>
+<xs:element name="modifyCSParameterDefinition" type="ModifyCSParameterDefinition"/>
+<xs:element name="deleteCSParameterDefinition" type="DeleteCSParameterDefinition"/>
+<xs:element name="orderCSExecute" type="OrderCSExecute"/>
+<xs:element name="addRestConfig" type="AddRestConfig"/>
+<xs:element name="modifyRestConfig" type="ModifyRestConfig"/>
+<xs:element name="deleteRestConfig" type="DeleteRestConfig"/>
+<xs:element name="addRestRequest" type="AddRestRequest"/>
+<xs:element name="modifyRestRequest" type="ModifyRestRequest"/>
+<xs:element name="deleteRestRequest" type="DeleteRestRequest"/>
+<xs:element name="addRestParser" type="AddRestParser"/>
+<xs:element name="modifyRestParser" type="ModifyRestParser"/>
+<xs:element name="deleteRestParser" type="DeleteRestParser"/>
+<xs:element name="addRestProcessor" type="AddRestProcessor"/>
+<xs:element name="modifyRestProcessor" type="ModifyRestProcessor"/>
+<xs:element name="deleteRestProcessor" type="DeleteRestProcessor"/>
+<xs:element name="addRestErrorHandler" type="AddRestErrorHandler"/>
+<xs:element name="modifyRestErrorHandler" type="ModifyRestErrorHandler"/>
+<xs:element name="deleteRestErrorHandler" type="DeleteRestErrorHandler"/>
+<xs:element name="addRestWriter" type="AddRestWriter"/>
+<xs:element name="modifyRestWriter" type="ModifyRestWriter"/>
+<xs:element name="deleteRestWriter" type="DeleteRestWriter"/>
+<xs:element name="addWriteCOConfig" type="AddWriteCOConfig"/>
+<xs:element name="modifyWriteCOConfig" type="ModifyWriteCOConfig"/>
+<xs:element name="deleteWriteCOConfig" type="DeleteWriteCOConfig"/>
+<xs:element name="addWriteCORoot" type="AddWriteCORoot"/>
+<xs:element name="modifyWriteCORoot" type="ModifyWriteCORoot"/>
+<xs:element name="deleteWriteCORoot" type="DeleteWriteCORoot"/>
+<xs:element name="addWriteCOChild" type="AddWriteCOChild"/>
+<xs:element name="modifyWriteCOChild" type="ModifyWriteCOChild"/>
+<xs:element name="deleteWriteCOChild" type="DeleteWriteCOChild"/>
+<xs:element name="addSearchableCOConfig" type="AddSearchableCOConfig"/>
+<xs:element name="modifySearchableCOConfig" type="ModifySearchableCOConfig"/>
+<xs:element name="deleteSearchableCOConfig" type="DeleteSearchableCOConfig"/>
+<xs:element name="addSearchableRoot" type="AddSearchableRoot"/>
+<xs:element name="modifySearchableRoot" type="ModifySearchableRoot"/>
+<xs:element name="deleteSearchableRoot" type="DeleteSearchableRoot"/>
+<xs:element name="addSearchableChild" type="AddSearchableChild"/>
+<xs:element name="modifySearchableChild" type="ModifySearchableChild"/>
+<xs:element name="deleteSearchableChild" type="DeleteSearchableChild"/>
+<xs:element name="addSearchableField" type="AddSearchableField"/>
+<xs:element name="modifySearchableField" type="ModifySearchableField"/>
+<xs:element name="deleteSearchableField" type="DeleteSearchableField"/>
+<xs:element name="addViewField" type="AddViewField"/>
+<xs:element name="modifyViewField" type="ModifyViewField"/>
+<xs:element name="deleteViewField" type="DeleteViewField"/>
+<xs:element name="addViewChildMany" type="AddViewChildMany"/>
+<xs:element name="modifyViewChildMany" type="ModifyViewChildMany"/>
+<xs:element name="deleteViewChildMany" type="DeleteViewChildMany"/>
+<xs:element name="addViewConfig" type="AddViewConfig"/>
+<xs:element name="modifyViewConfig" type="ModifyViewConfig"/>
+<xs:element name="deleteViewConfig" type="DeleteViewConfig"/>
+<xs:element name="addViewRoot" type="AddViewRoot"/>
+<xs:element name="modifyViewRoot" type="ModifyViewRoot"/>
+<xs:element name="deleteViewRoot" type="DeleteViewRoot"/>
+<xs:element name="addViewChildOne" type="AddViewChildOne"/>
+<xs:element name="modifyViewChildOne" type="ModifyViewChildOne"/>
+<xs:element name="deleteViewChildOne" type="DeleteViewChildOne"/>
+<xs:element name="orderViewField" type="OrderViewField"/>
+<xs:element name="orderViewChild" type="OrderViewChild"/>
+<xs:element name="addTransformationConfig" type="AddTransformationConfig"/>
+<xs:element name="modifyTransformationConfig" type="ModifyTransformationConfig"/>
+<xs:element name="deleteTransformationConfig" type="DeleteTransformationConfig"/>
+<xs:element name="addView2CO" type="AddView2CO"/>
+<xs:element name="modifyView2CO" type="ModifyView2CO"/>
+<xs:element name="deleteView2CO" type="DeleteView2CO"/>
+<xs:element name="addCO2View" type="AddCO2View"/>
+<xs:element name="modifyCO2View" type="ModifyCO2View"/>
+<xs:element name="deleteCO2View" type="DeleteCO2View"/>
+<xs:element name="addCO2CO" type="AddCO2CO"/>
+<xs:element name="modifyCO2CO" type="ModifyCO2CO"/>
+<xs:element name="deleteCO2CO" type="DeleteCO2CO"/>
+<xs:element name="addBE2XML" type="AddBE2XML"/>
+<xs:element name="modifyBE2XML" type="ModifyBE2XML"/>
+<xs:element name="deleteBE2XML" type="DeleteBE2XML"/>
+<xs:element name="addXML2BE" type="AddXML2BE"/>
+<xs:element name="modifyXML2BE" type="ModifyXML2BE"/>
+<xs:element name="deleteXML2BE" type="DeleteXML2BE"/>
+<xs:element name="addCVTransformation" type="AddCVTransformation"/>
+<xs:element name="modifyCVTransformation" type="ModifyCVTransformation"/>
+<xs:element name="deleteCVTransformation" type="DeleteCVTransformation"/>
+<xs:element name="addCVGroup" type="AddCVGroup"/>
+<xs:element name="modifyCVGroup" type="ModifyCVGroup"/>
+<xs:element name="deleteCVGroup" type="DeleteCVGroup"/>
+<xs:element name="addCVInput" type="AddCVInput"/>
+<xs:element name="modifyCVInput" type="ModifyCVInput"/>
+<xs:element name="deleteCVInput" type="DeleteCVInput"/>
+<xs:element name="addCVOutput" type="AddCVOutput"/>
+<xs:element name="modifyCVOutput" type="ModifyCVOutput"/>
+<xs:element name="deleteCVOutput" type="DeleteCVOutput"/>
+<xs:element name="addComponentInstance" type="AddComponentInstance"/>
+<xs:element name="modifyComponentInstance" type="ModifyComponentInstance"/>
+<xs:element name="deleteComponentInstance" type="DeleteComponentInstance"/>
+<xs:element name="addTaskConfig" type="AddTaskConfig"/>
+<xs:element name="modifyTaskConfig" type="ModifyTaskConfig"/>
+<xs:element name="deleteTaskConfig" type="DeleteTaskConfig"/>
+<xs:element name="addTaskTemplate" type="AddTaskTemplate"/>
+<xs:element name="modifyTaskTemplate" type="ModifyTaskTemplate"/>
+<xs:element name="deleteTaskTemplate" type="DeleteTaskTemplate"/>
+<xs:element name="addTaskTrigger" type="AddTaskTrigger"/>
+<xs:element name="modifyTaskTrigger" type="ModifyTaskTrigger"/>
+<xs:element name="deleteTaskTrigger" type="DeleteTaskTrigger"/>
+<xs:element name="addTaskType" type="AddTaskType"/>
+<xs:element name="modifyTaskType" type="ModifyTaskType"/>
+<xs:element name="deleteTaskType" type="DeleteTaskType"/>
+<xs:element name="addActionConfigAction" type="AddActionConfigAction"/>
+<xs:element name="modifyActionConfigAction" type="ModifyActionConfigAction"/>
+<xs:element name="deleteActionConfigAction" type="DeleteActionConfigAction"/>
+<xs:element name="addActionConfigEntity" type="AddActionConfigEntity"/>
+<xs:element name="modifyActionConfigEntity" type="ModifyActionConfigEntity"/>
+<xs:element name="deleteActionConfigEntity" type="DeleteActionConfigEntity"/>
+<xs:element name="addActionConfigRole" type="AddActionConfigRole"/>
+<xs:element name="modifyActionConfigRole" type="ModifyActionConfigRole"/>
+<xs:element name="deleteActionConfigRole" type="DeleteActionConfigRole"/>
+<xs:element name="addTaskActionConfig" type="AddTaskActionConfig"/>
+<xs:element name="modifyTaskActionConfig" type="ModifyTaskActionConfig"/>
+<xs:element name="deleteTaskActionConfig" type="DeleteTaskActionConfig"/>
+<xs:element name="addTaskRole" type="AddTaskRole"/>
+<xs:element name="modifyTaskRole" type="ModifyTaskRole"/>
+<xs:element name="deleteTaskRole" type="DeleteTaskRole"/>
+<xs:element name="addTaskEntity" type="AddTaskEntity"/>
+<xs:element name="modifyTaskEntity" type="ModifyTaskEntity"/>
+<xs:element name="deleteTaskEntity" type="DeleteTaskEntity"/>
+<xs:element name="addTaskEvent" type="AddTaskEvent"/>
+<xs:element name="modifyTaskEvent" type="ModifyTaskEvent"/>
+<xs:element name="deleteTaskEvent" type="DeleteTaskEvent"/>
+<xs:element name="addStartWorkflow" type="AddStartWorkflow"/>
+<xs:element name="modifyStartWorkflow" type="ModifyStartWorkflow"/>
+<xs:element name="deleteStartWorkflow" type="DeleteStartWorkflow"/>
+<xs:element name="addExtensionsConfig" type="AddExtensionsConfig"/>
+<xs:element name="modifyExtensionsConfig" type="ModifyExtensionsConfig"/>
+<xs:element name="deleteExtensionsConfig" type="DeleteExtensionsConfig"/>
+<xs:element name="addWSDL" type="AddWSDL"/>
+<xs:element name="modifyWSDL" type="ModifyWSDL"/>
+<xs:element name="deleteWSDL" type="DeleteWSDL"/>
+<xs:element name="addSOAPService" type="AddSOAPService"/>
+<xs:element name="modifySOAPService" type="ModifySOAPService"/>
+<xs:element name="deleteSOAPService" type="DeleteSOAPService"/>
+<xs:element name="addDaaSProvider" type="AddDaaSProvider"/>
+<xs:element name="modifyDaaSProvider" type="ModifyDaaSProvider"/>
+<xs:element name="deleteDaaSProvider" type="DeleteDaaSProvider"/>
+<xs:element name="addExternalCall" type="AddExternalCall"/>
+<xs:element name="modifyExternalCall" type="ModifyExternalCall"/>
+<xs:element name="deleteExternalCall" type="DeleteExternalCall"/>
+<xs:element name="addBesMetadataBundle" type="AddBesMetadataBundle"/>
+<xs:element name="modifyBesMetadataBundle" type="ModifyBesMetadataBundle"/>
+<xs:element name="deleteBesMetadataBundle" type="DeleteBesMetadataBundle"/>
+<xs:element name="addDbResourceBundles" type="AddDbResourceBundles"/>
+<xs:element name="modifyDbResourceBundles" type="ModifyDbResourceBundles"/>
+<xs:element name="deleteDbResourceBundles" type="DeleteDbResourceBundles"/>
+<xs:element name="addDbResourceBundle" type="AddDbResourceBundle"/>
+<xs:element name="modifyDbResourceBundle" type="ModifyDbResourceBundle"/>
+<xs:element name="deleteDbResourceBundle" type="DeleteDbResourceBundle"/>
+<xs:element name="addDbBundleMapping" type="AddDbBundleMapping"/>
+<xs:element name="modifyDbBundleMapping" type="ModifyDbBundleMapping"/>
+<xs:element name="deleteDbBundleMapping" type="DeleteDbBundleMapping"/>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+<xs:attribute name="creationDate" type="xs:dateTime"/>
+<xs:attribute name="description" type="xs:string"/>
+<xs:attribute name="hubVersion" type="xs:string"/>
+<xs:attribute name="listType" type="xs:string"/>
+<xs:attribute name="name" type="xs:string"/>
+<xs:attribute name="version" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddSystemBaseObject">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="tableName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="alias" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="historyIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="acceptNonMatchedRecordsAsUniqueIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="loadBatchSize" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchBatchSize" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="manualMergeQueueSize" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="intertableMatchEnabledIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stripOnLoadIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="dataSpaceName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="indexSpaceName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stripOnPutIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="maxElapsedMatchMinutes" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="parallelDegree" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="completeStripRatio" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="requeueOnParentMergeIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchForDupsThreshold" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="disableConstraintIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchPopulation" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchParallelDegree" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="exactMatchObjectIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="bmgOnMatchIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchFlagAuditIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stripCtasDeleteRatio" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchLessThanIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchOnlyOnceIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchDynamicAnalysis" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchLinkEnabled" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stripCtasDeleteUpperLimit" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="resetLinksWhenRulesChange" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="resetLinksOnDataUpdate" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="resetLinksForConsolidatedRecords" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="resetLinksForManualRecords" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchPendingIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="promotionAuditIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stateManagementIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="deltaAllowedOnRejectsIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="noLoggingIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="apiLockWait" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="batchLockWait" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="lookupIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="linkManagementIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="versioningInd" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="nonContiguousInd" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="multiThreadBatchInd" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="batchChunkSize" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="batchThreadCount" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="timelineFillOnGap" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="diStagingInd" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="periodicVersioningInd" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="changeControlInd" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="structuredHierarchyInd" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="putableSystemColsList" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="exposedSystemColumns" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="columns">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element maxOccurs="1" minOccurs="0" name="addBaseObjectColumn" type="AddBaseObjectColumn"/>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddSystemBaseObjectColumn">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="columnName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="isNullable" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="dataDefault" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="multipleValuesIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayLength" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="trustIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="updateNullAllowedIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="validationIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="externalUidIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="mergeUpdateNullAllowIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="caseInsensitiveIndexIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="columnType" type="ColumnDataType"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddSystemPackage">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="tableName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="packageQueryRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="putEnabledIndicator" type="xs:integer"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddSystemForeignKey">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="enforcedIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="indexOnFkIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stateIntegrity" type="ValueMap"/>
+<xs:element maxOccurs="1" minOccurs="0" name="lookupDisplayName" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddSystem">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="smosIndicator" type="xs:integer"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifySystem">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="smosIndicator" type="xs:integer"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteSystem">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddBaseObject">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="tableName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="alias" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="historyIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="acceptNonMatchedRecordsAsUniqueIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="loadBatchSize" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchBatchSize" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="manualMergeQueueSize" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="intertableMatchEnabledIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stripOnLoadIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="dataSpaceName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="indexSpaceName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stripOnPutIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="maxElapsedMatchMinutes" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="parallelDegree" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="completeStripRatio" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="requeueOnParentMergeIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchForDupsThreshold" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="disableConstraintIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchPopulation" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchParallelDegree" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="exactMatchObjectIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="bmgOnMatchIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchFlagAuditIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stripCtasDeleteRatio" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchLessThanIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchOnlyOnceIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchDynamicAnalysis" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchLinkEnabled" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stripCtasDeleteUpperLimit" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="resetLinksWhenRulesChange" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="resetLinksOnDataUpdate" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="resetLinksForConsolidatedRecords" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="resetLinksForManualRecords" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchPendingIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="promotionAuditIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stateManagementIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="deltaAllowedOnRejectsIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="noLoggingIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="apiLockWait" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="batchLockWait" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="lookupIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="linkManagementIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="versioningInd" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="nonContiguousInd" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="multiThreadBatchInd" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="batchChunkSize" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="batchThreadCount" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="timelineFillOnGap" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="diStagingInd" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="periodicVersioningInd" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="changeControlInd" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="structuredHierarchyInd" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="putableSystemColsList" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="exposedSystemColumns" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="columns">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element maxOccurs="1" minOccurs="0" name="addBaseObjectColumn" type="AddBaseObjectColumn"/>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyBaseObject">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="tableName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="alias" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="historyIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="acceptNonMatchedRecordsAsUniqueIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="loadBatchSize" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchBatchSize" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="manualMergeQueueSize" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="intertableMatchEnabledIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stripOnLoadIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="dataSpaceName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="indexSpaceName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stripOnPutIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="maxElapsedMatchMinutes" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="parallelDegree" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="completeStripRatio" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="requeueOnParentMergeIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchForDupsThreshold" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="disableConstraintIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchPopulation" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchParallelDegree" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="exactMatchObjectIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="bmgOnMatchIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchFlagAuditIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stripCtasDeleteRatio" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchLessThanIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchOnlyOnceIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchDynamicAnalysis" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchLinkEnabled" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stripCtasDeleteUpperLimit" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="resetLinksWhenRulesChange" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="resetLinksOnDataUpdate" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="resetLinksForConsolidatedRecords" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="resetLinksForManualRecords" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchPendingIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="promotionAuditIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stateManagementIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="deltaAllowedOnRejectsIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="noLoggingIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="apiLockWait" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="batchLockWait" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="lookupIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="linkManagementIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="versioningInd" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="nonContiguousInd" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="multiThreadBatchInd" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="batchChunkSize" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="batchThreadCount" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="timelineFillOnGap" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="diStagingInd" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="periodicVersioningInd" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="changeControlInd" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="structuredHierarchyInd" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="putableSystemColsList" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="exposedSystemColumns" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteBaseObject">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddBaseObjectColumn">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="columnName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="isNullable" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="dataDefault" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="multipleValuesIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayLength" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="trustIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="updateNullAllowedIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="validationIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="externalUidIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="mergeUpdateNullAllowIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="caseInsensitiveIndexIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="columnType" type="ColumnDataType"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyBaseObjectColumn">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="columnName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="isNullable" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="dataDefault" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="multipleValuesIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayLength" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="trustIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="updateNullAllowedIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="validationIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="externalUidIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="mergeUpdateNullAllowIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="caseInsensitiveIndexIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="columnType" type="ColumnDataType"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteBaseObjectColumn">
+<xs:attribute name="id" type="xs:string"/>
+<xs:attribute name="tableWillBeDeleted" type="xs:boolean"/>
+</xs:complexType>
+<xs:complexType name="AddForeignKey">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="enforcedIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="indexOnFkIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stateIntegrity" type="ValueMap"/>
+<xs:element maxOccurs="1" minOccurs="0" name="lookupDisplayName" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteForeignKey">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyForeignKey">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="enforcedIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="indexOnFkIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stateIntegrity" type="ValueMap"/>
+<xs:element maxOccurs="1" minOccurs="0" name="lookupDisplayName" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyCascadeUnmerge">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="cascadeUnmergeOnParentIndicator" type="xs:boolean"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddMatchPathComponent">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="parentComponentRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="parentTableRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="childTableRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="foreignKeyConstraintRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="checkForMissingChildrenIndicator" type="xs:integer"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyMatchPathComponent">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="parentComponentRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="parentTableRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="childTableRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="foreignKeyConstraintRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="checkForMissingChildrenIndicator" type="xs:integer"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteMatchPathComponent">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddMatchPathComponentFilter">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="columnRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="value" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="notInIndicator" type="xs:boolean"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyMatchPathComponentFilter">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="columnRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="value" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="notInIndicator" type="xs:boolean"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteMatchPathComponentFilter">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddMatchColumn">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchKeyIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchKeyWidth" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="fuzzyIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="interTableIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="subTypeColumnDefault" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchPathComponentId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="sourceColumns" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyMatchColumn">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchKeyIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchKeyWidth" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="fuzzyIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="interTableIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="subTypeColumnDefault" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchPathComponentId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="sourceColumns" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteMatchColumn">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddMatchRuleSet">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="defaultIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="searchLevel" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="searchMatchSetIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="filterIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="filterSql" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rules">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element maxOccurs="1" minOccurs="0" name="matchRule" type="MatchRule"/>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyMatchRuleSet">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="defaultIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="searchLevel" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="searchMatchSetIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="filterIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="filterSql" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rules">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element maxOccurs="1" minOccurs="0" name="matchRule" type="MatchRule"/>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteMatchRuleSet">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="rules">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element maxOccurs="1" minOccurs="0" name="matchRule" type="MatchRule"/>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="MatchRule">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="autoMergeIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchPurpose" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchLevel" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="exactRuleIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="ruleAcceptLimitAdjustment" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="geocodeRadius" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="components">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element maxOccurs="1" minOccurs="0" name="matchRuleComponent" type="MatchRuleComponent"/>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="MatchRuleComponent">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="matchColumnRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchWeightAdjustment" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="segmentMatchIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="segmentMatchValue" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="segmentMatchWithFullDataIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="nullMatchIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="antiMatchIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="substringMatchIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="usedInRuleIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="subType" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="AddPrimaryKeyMatchRule">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="autoMergeIndicator" type="xs:integer"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyPrimaryKeyMatchRule">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="autoMergeIndicator" type="xs:integer"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeletePrimaryKeyMatchRule">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyImmutableSystem">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="immutableSystemId" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddValidationRule">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="validRuleTypeRowId" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="sqlWhereClause" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="ruleColumns">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element maxOccurs="1" minOccurs="0" name="validationRuleColumn" type="ValidationRuleColumn"/>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyValidationRule">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="validRuleTypeRowId" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="sqlWhereClause" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="ruleColumns">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element maxOccurs="1" minOccurs="0" name="validationRuleColumn" type="ValidationRuleColumn"/>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteValidationRule">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="ruleColumns">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element maxOccurs="1" minOccurs="0" name="validationRuleColumn" type="ValidationRuleColumn"/>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ValidationRuleColumn">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="columnRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="downgradePercentage" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="reserveMinimumTrust" type="xs:integer"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="AddQueryGroup">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="groupName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyQueryGroup">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="groupName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteQueryGroup">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddQuery">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="queryGroupRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="primaryTableRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="customIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="sql" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteQuery">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyQuery">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="queryGroupRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="primaryTableRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="customIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="sql" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddCleanseLibrary">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="typeCode" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="dynamicIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="systemIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="majorVersionNumber" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="minorVersionNumber" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="className" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="wsdlUri" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="wsdlService" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="wsdlPort" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="jarBytes" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="properties" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyCleanseLibrary">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="typeCode" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="dynamicIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="systemIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="majorVersionNumber" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="minorVersionNumber" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="className" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="wsdlUri" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="wsdlService" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="wsdlPort" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="jarBytes" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="properties" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteCleanseLibrary">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddCleanseFunction">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="body" type="CleanseFunctionBody"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteCleanseFunction">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyCleanseFunction">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="body" type="CleanseFunctionBody"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="FunctionParameter">
+<xs:attribute name="description" type="xs:string"/>
+<xs:attribute name="name" type="xs:string"/>
+<xs:attribute name="sequenceNumber" type="xs:integer"/>
+<xs:attribute name="typeCode" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DataGraph">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="function" type="Function"/>
+<xs:element maxOccurs="1" minOccurs="0" name="graphComponents">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element name="graphComponent" type="GraphComponent"/>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+<xs:element maxOccurs="1" minOccurs="0" name="links">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element name="graphLink" type="GraphLink"/>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+<xs:attribute name="inputX" type="xs:integer"/>
+<xs:attribute name="inputY" type="xs:integer"/>
+<xs:attribute name="outputX" type="xs:integer"/>
+<xs:attribute name="outputY" type="xs:integer"/>
+</xs:complexType>
+<xs:complexType name="CleanseFunctionBody">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="function" type="Function"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Function">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="caseValues">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element maxOccurs="1" minOccurs="0" name="cleanseCaseValue" type="ReposCleanseCaseValueDataAccessObject"/>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+<xs:element maxOccurs="1" minOccurs="0" name="cleanseItemList">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element maxOccurs="1" minOccurs="0" name="cleanseListItem" type="ReposCleanseListItemDataAccessObject"/>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+<xs:element maxOccurs="1" minOccurs="0" name="conditionGraphs">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="value" type="DataGraph"/>
+</xs:sequence>
+<xs:attribute name="key" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element maxOccurs="1" minOccurs="0" name="dataGraph" type="DataGraph"/>
+<xs:element maxOccurs="1" minOccurs="0" name="inputs">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element name="functionParameter" type="FunctionParameter"/>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+<xs:element maxOccurs="1" minOccurs="0" name="outputs">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element name="functionParameter" type="FunctionParameter"/>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+<xs:attribute name="defaultConditionValue" type="xs:string"/>
+<xs:attribute name="description" type="xs:string"/>
+<xs:attribute name="name" type="xs:string"/>
+<xs:attribute name="sourceRegexp" type="xs:string"/>
+<xs:attribute name="targetRegexp" type="xs:string"/>
+<xs:attribute name="typeCode" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ReposCleanseListItemDataAccessObject">
+<xs:attribute name="expressionStyle" type="xs:string"/>
+<xs:attribute name="matchString" type="xs:string"/>
+<xs:attribute name="outputString" type="xs:string"/>
+<xs:attribute name="sequence" type="xs:double"/>
+</xs:complexType>
+<xs:complexType name="GraphComponent">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="condition" type="Condition"/>
+<xs:element maxOccurs="1" minOccurs="0" name="constantValue" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="function" type="Function"/>
+</xs:sequence>
+<xs:attribute name="constantType" type="xs:string"/>
+<xs:attribute name="displayState" type="xs:string"/>
+<xs:attribute name="loggingIndicator" type="xs:boolean"/>
+<xs:attribute name="rowid" type="xs:string"/>
+<xs:attribute name="type" type="xs:integer"/>
+<xs:attribute name="x" type="xs:integer"/>
+<xs:attribute name="y" type="xs:integer"/>
+</xs:complexType>
+<xs:complexType name="GraphLink">
+<xs:attribute name="sourceParameterId" type="xs:string"/>
+<xs:attribute name="targetParameterId" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="Condition"/>
+<xs:complexType name="ReposCleanseCaseValueDataAccessObject">
+<xs:attribute name="caseValue" type="xs:string"/>
+<xs:attribute name="defaultValueIndicator" type="xs:integer"/>
+</xs:complexType>
+<xs:complexType name="AddStagingTable">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="tableName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="alias" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="deltaType" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="cellRefreshUpdateIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rawDataRetentionUnitCode" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rawDataRetentionLength" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="sourceSystemRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="initialTakeonIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="takeonGap" type="xs:long"/>
+<xs:element maxOccurs="1" minOccurs="0" name="timelineFillOnGap" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="deltaAllowedOnRejectsIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="dataSpaceName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="indexSpaceName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="diStagingInd" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="deltaDetectionColumn" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="columns">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element maxOccurs="1" minOccurs="0" name="addStagingTableColumn" type="AddStagingTableColumn"/>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+<xs:attribute name="parentId" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteStagingTable">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyStagingTable">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="tableName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="alias" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="deltaType" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="cellRefreshUpdateIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rawDataRetentionUnitCode" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rawDataRetentionLength" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="sourceSystemRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="initialTakeonIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="takeonGap" type="xs:long"/>
+<xs:element maxOccurs="1" minOccurs="0" name="timelineFillOnGap" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="deltaAllowedOnRejectsIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="dataSpaceName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="indexSpaceName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="diStagingInd" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="deltaDetectionColumn" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddStagingTableColumn">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="columnName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="parentColumnRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="lookupColumnRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="lookupSystemRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="lookupAllowNullForeignKey" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="updateNullAllowedIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="deltaIndicator" type="xs:integer"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyStagingTableColumn">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="columnName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="parentColumnRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="lookupColumnRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="lookupSystemRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="lookupAllowNullForeignKey" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="updateNullAllowedIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="deltaIndicator" type="xs:integer"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteStagingTableColumn">
+<xs:attribute name="id" type="xs:string"/>
+<xs:attribute name="tableWillBeDeleted" type="xs:boolean"/>
+</xs:complexType>
+<xs:complexType name="AddLandingTable">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="tableName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="alias" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="dataSpaceName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="indexSpaceName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="fullSetLandingIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="columns">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element maxOccurs="1" minOccurs="0" name="addLandingTableColumn" type="AddLandingTableColumn"/>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyLandingTable">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="tableName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="alias" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="dataSpaceName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="indexSpaceName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="fullSetLandingIndicator" type="xs:integer"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteLandingTable">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddLandingTableColumn">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="columnName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="isNullable" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="dataDefault" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="multipleValuesIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayLength" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="readOnlyIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="primaryKeyIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="updateNullAllowedIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="columnType" type="ColumnDataType"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyLandingTableColumn">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="columnName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="isNullable" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="dataDefault" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="multipleValuesIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayLength" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="readOnlyIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="primaryKeyIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="updateNullAllowedIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="columnType" type="ColumnDataType"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteLandingTableColumn">
+<xs:attribute name="id" type="xs:string"/>
+<xs:attribute name="tableWillBeDeleted" type="xs:boolean"/>
+</xs:complexType>
+<xs:complexType name="ModifySystemColumnTrust">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="systemRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="columnRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="trust" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="maximumTimeUnits" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="timeUnit" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="graphType" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="minimumTrust" type="xs:integer"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddDistinctSystem">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="distinctSystemIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="autoRulesOnlyIndicator" type="xs:boolean"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyDistinctSystem">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="distinctSystemIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="autoRulesOnlyIndicator" type="xs:boolean"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteDistinctSystem">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddPackage">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="tableName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="packageQueryRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="putEnabledIndicator" type="xs:integer"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyPackage">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="tableName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="packageQueryRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="putEnabledIndicator" type="xs:integer"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeletePackage">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyPackageColumn">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="columnName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="readOnlyIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="primaryKeyIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="parentColumnRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="dataDefault" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="trustIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="validationIndicator" type="xs:integer"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddMapping">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="sourceTableRowid" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="targetTableRowid" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="sqlWhereClause" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="distinctIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="body" type="CleanseFunctionBody"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyMapping">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="sourceTableRowid" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="targetTableRowid" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="sqlWhereClause" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="distinctIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="body" type="CleanseFunctionBody"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteMapping">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="MappingProxy"/>
+<xs:complexType name="AddDependentObject">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="tableName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="dataSpaceName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="indexSpaceName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="columns">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element maxOccurs="1" minOccurs="0" name="addDependentObjectColumn" type="AddDependentObjectColumn"/>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+<xs:attribute name="parentId" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyDependentObject">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="tableName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="dataSpaceName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="indexSpaceName" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteDependentObject">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddDependentObjectColumn">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="columnName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="isNullable" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="dataDefault" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="multipleValuesIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayLength" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="readOnlyIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="primaryKeyIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="updateNullAllowedIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="columnType" type="ColumnDataType"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyDependentObjectColumn">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="columnName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="isNullable" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="dataDefault" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="multipleValuesIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayLength" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="readOnlyIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="primaryKeyIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="updateNullAllowedIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="columnType" type="ColumnDataType"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteDependentObjectColumn">
+<xs:attribute name="id" type="xs:string"/>
+<xs:attribute name="tableWillBeDeleted" type="xs:boolean"/>
+</xs:complexType>
+<xs:complexType name="AddRole">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="externalRoleName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="roles" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="resources">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element maxOccurs="1" minOccurs="0" name="resourcePrivileges" type="ResourcePrivileges"/>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteRole">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="resources">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element maxOccurs="1" minOccurs="0" name="resourcePrivileges" type="ResourcePrivileges"/>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyRole">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="externalRoleName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="roles" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="resources">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element maxOccurs="1" minOccurs="0" name="resourcePrivileges" type="ResourcePrivileges"/>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ResourcePrivileges">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="samResourceRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="privilegeCreateInd" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="privilegeReadInd" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="privilegeUpdateInd" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="privilegeMergeInd" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="privilegeDeleteInd" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="privilegeExecuteInd" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="AddResourceGroup">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="resources" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyResourceGroup">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="resources" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteResourceGroup">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddSecureResource">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteSecureResource">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddBatchGroup">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="body" type="JobGroupBody"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyBatchGroup">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="body" type="JobGroupBody"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteBatchGroup">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="JobGroupBody">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="jobGroupItems">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element maxOccurs="1" minOccurs="0" name="jobGroupItem" type="ReposJobGroupItemDataAccessObject"/>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ReposJobGroupItemDataAccessObject">
+<xs:attribute name="execParam" type="xs:string"/>
+<xs:attribute name="level" type="xs:integer"/>
+<xs:attribute name="rowid" type="xs:string"/>
+<xs:attribute name="rowidJobGroup" type="xs:string"/>
+<xs:attribute name="rowidTableObject" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddIndex">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="constraintTableRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="keyConstraintName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="constraintType" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="indexColumns" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyIndex">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="constraintTableRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="keyConstraintName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="constraintType" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="indexColumns" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteIndex">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddHmProfile">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyHmProfile">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteHmProfile">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddHmSandbox">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="status" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="promotableIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rowidParent" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyHmSandbox">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="status" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="promotableIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rowidParent" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteHmSandbox">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddHmBlob">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="type" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="activeIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="jarBytes" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyHmBlob">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="type" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="activeIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="jarBytes" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteHmBlob">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddHmHierarchy">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="code" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyHmHierarchy">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="code" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteHmHierarchy">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddHmEntityType">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="code" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="settings" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+<xs:attribute name="parentId" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyHmEntityType">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="code" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="settings" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteHmEntityType">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddHmEntityObject">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="rowidTable" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rowidKeyConstraint" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyHmEntityObject">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="rowidTable" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rowidKeyConstraint" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="RevertHmEntityObject">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddHmRelationshipObject">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="fkRelIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rowidTable" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rowidSandbox" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rowidFkHierarchy" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rowidFkRelType" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="relObjectFks" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="RevertHmRelationshipObject">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddHmRelationshipType">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="code" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="directionIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="settings" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rowidBoClass1" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rowidBoClass2" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="foreignKeyRelIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="relStartDate" type="xs:dateTime"/>
+<xs:element maxOccurs="1" minOccurs="0" name="relEndDate" type="xs:dateTime"/>
+<xs:element maxOccurs="1" minOccurs="0" name="Hierarchies" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+<xs:attribute name="parentId" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyHmRelationshipType">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="code" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="directionIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="settings" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rowidBoClass1" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rowidBoClass2" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="foreignKeyRelIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="relStartDate" type="xs:dateTime"/>
+<xs:element maxOccurs="1" minOccurs="0" name="relEndDate" type="xs:dateTime"/>
+<xs:element maxOccurs="1" minOccurs="0" name="Hierarchies" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteHmRelationshipType">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddHmPackage">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="typeIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rowidRelationshipType" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rowidBoClass" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rowidHmSandbox" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+<xs:attribute name="parentId" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteHmPackage">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddHmColumnPackage">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="rowidColumn" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="sequence" type="xs:integer"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+<xs:attribute name="parentId" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyHmColumnPackage">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="rowidColumn" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="sequence" type="xs:integer"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+<xs:attribute name="parentId" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteHmColumnPackage">
+<xs:attribute name="id" type="xs:string"/>
+<xs:attribute name="parentId" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddMatchPopulation">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="enabledIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="settingsXml" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyMatchPopulation">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="enabledIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="settingsXml" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddSystemTable">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="tableName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="alias" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="historyIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="putEnabledIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="sourceSystemRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="cellRefreshUpdateIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="deltaType" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="packageQueryRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rawDataRetentionUnitCode" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rawDataRetentionLength" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="acceptNonMatchedRecordsAsUniqueIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="loadBatchSize" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchBatchSize" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="manualMergeQueueSize" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="intertableMatchEnabledIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stripOnLoadIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="initialTakeonIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="takeonGap" type="xs:long"/>
+<xs:element maxOccurs="1" minOccurs="0" name="dataSpaceName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="indexSpaceName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stripOnPutIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="maxElapsedMatchMinutes" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="parallelDegree" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="completeStripRatio" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="requeueOnParentMergeIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchForDupsThreshold" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="disableConstraintIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="fullSetLandingIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchPopulation" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchParallelDegree" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="exactMatchObjectIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="bmgOnMatchIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchFlagAuditIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stripCtasDeleteRatio" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchLessThanIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchOnlyOnceIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchDynamicAnalysis" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchLinkEnabled" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stripCtasDeleteUpperLimit" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="resetLinksWhenRulesChange" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="resetLinksOnDataUpdate" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="resetLinksForConsolidatedRecords" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="resetLinksForManualRecords" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="matchPendingIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="promotionAuditIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stateManagementIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="deltaAllowedOnRejectsIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="noLoggingIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="apiLockWait" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="batchLockWait" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="lookupIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="linkManagementIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="versioningInd" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="nonContiguousInd" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="multiThreadBatchInd" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="batchChunkSize" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="batchThreadCount" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="timelineFillOnGap" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="diStagingInd" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="periodicVersioningInd" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="changeControlInd" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="structuredHierarchyInd" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="columns">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element maxOccurs="1" minOccurs="0" name="systemTableColumn" type="SystemTableColumn"/>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+<xs:attribute name="displayName" type="xs:string"/>
+<xs:attribute name="id" type="xs:string"/>
+<xs:attribute name="tableName" type="xs:string"/>
+<xs:attribute name="tableType" type="xs:integer"/>
+</xs:complexType>
+<xs:complexType name="SystemTableColumn">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="columnName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="parentColumnRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="isNullable" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="dataDefault" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="multipleValuesIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="lookupColumnRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="lookupSystemRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="lookupAllowNullForeignKey" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayLength" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="trustIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="readOnlyIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="deltaIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="updateNullAllowedIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="validationIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="externalUidIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="mergeUpdateNullAllowIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="caseInsensitiveIndexIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="columnType" type="ColumnDataType"/>
+<xs:element maxOccurs="1" minOccurs="0" name="primaryKeyIndicator" type="xs:integer"/>
+</xs:sequence>
+<xs:attribute name="columnName" type="xs:string"/>
+<xs:attribute name="dataType" type="xs:string"/>
+<xs:attribute name="displayName" type="xs:string"/>
+<xs:attribute name="id" type="xs:string"/>
+<xs:attribute name="tableName" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyColumn">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="columnName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="parentColumnRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="isNullable" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="dataDefault" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="multipleValuesIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="lookupColumnRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="lookupSystemRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="lookupAllowNullForeignKey" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayLength" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="trustIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="readOnlyIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="deltaIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="updateNullAllowedIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="validationIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="externalUidIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="mergeUpdateNullAllowIndicator" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="caseInsensitiveIndexIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="columnType" type="ColumnDataType"/>
+<xs:element maxOccurs="1" minOccurs="0" name="primaryKeyIndicator" type="xs:integer"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="OrderColumn">
+<xs:attribute name="columns" type="xs:string"/>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="OrderMatchColumn">
+<xs:attribute name="columns" type="xs:string"/>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="OrderValidationRule">
+<xs:attribute name="columns" type="xs:string"/>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddMessageTrigger">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="ruleName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="messagePackageRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="triggerOnInsertIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="triggerOnUpdateIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="triggerOnMergeIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="triggerOnUniqueIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="triggerOnUpdateXrefIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="triggerOnMergeUpdateIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="triggerOnUnMergeIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="triggerOnNoActionIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="triggerOnBODeleteIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="triggerOnXrefDeleteIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="triggerOnPendingInsertIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="triggerOnPendingUpdateIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="triggerOnPendingUpdateXrefIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="triggerOnBOStateDeleteIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="triggerOnXrefStateDeleteIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="anyColumnIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="columns">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element maxOccurs="1" minOccurs="0" name="messageTriggerColumn" type="MessageTriggerColumn"/>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+<xs:element maxOccurs="1" minOccurs="0" name="systems">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element maxOccurs="1" minOccurs="0" name="messageTriggerSystem" type="MessageTriggerSystem"/>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyMessageTrigger">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="ruleName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="messagePackageRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="triggerOnInsertIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="triggerOnUpdateIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="triggerOnMergeIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="triggerOnUniqueIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="triggerOnUpdateXrefIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="triggerOnMergeUpdateIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="triggerOnUnMergeIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="triggerOnNoActionIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="triggerOnBODeleteIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="triggerOnXrefDeleteIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="triggerOnPendingInsertIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="triggerOnPendingUpdateIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="triggerOnPendingUpdateXrefIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="triggerOnBOStateDeleteIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="triggerOnXrefStateDeleteIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="anyColumnIndicator" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="columns">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element maxOccurs="1" minOccurs="0" name="messageTriggerColumn" type="MessageTriggerColumn"/>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+<xs:element maxOccurs="1" minOccurs="0" name="systems">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element maxOccurs="1" minOccurs="0" name="messageTriggerSystem" type="MessageTriggerSystem"/>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteMessageTrigger">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="MessageTriggerColumn">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="listeningColumnRowId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="MessageTriggerSystem">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="systemRowId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="triggering" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="inMessage" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="AddSubjectArea">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rowidTable" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rowidFilterColumn" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="filterValue" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="DSIName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="labelFormatStr" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="labelRowidColumnList" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="activeInd" type="xs:boolean"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifySubjectArea">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rowidTable" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rowidFilterColumn" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="filterValue" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="DSIName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="labelFormatStr" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="labelRowidColumnList" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="activeInd" type="xs:boolean"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteSubjectArea">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddTaskAssignmentConf">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="taskType" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rowidUser" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rowidRole" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rowidSubjectArea" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyTaskAssignmentConf">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="taskType" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rowidUser" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rowidRole" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="rowidSubjectArea" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteTaskAssignmentConf">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddDataSecurityFilter">
+<xs:attribute name="column" type="xs:string"/>
+<xs:attribute name="dsiName" type="xs:string"/>
+<xs:attribute name="filterValue" type="xs:string"/>
+<xs:attribute name="id" type="xs:string"/>
+<xs:attribute name="matchPathComponent" type="xs:string"/>
+<xs:attribute name="samRole" type="xs:string"/>
+<xs:attribute name="subjectArea" type="xs:string"/>
+<xs:attribute name="tableColumnName" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteDataSecurityFilter">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddCOConfig">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="version" type="xs:integer"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyCOConfig">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="version" type="xs:integer"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteCOConfig">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddCORoot">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="hubObject" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="label" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="labelFormat" type="ValueMap"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stateManagement" type="xs:boolean"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyCORoot">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="hubObject" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="label" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="labelFormat" type="ValueMap"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stateManagement" type="xs:boolean"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteCORoot">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddCOLookup">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="hubObject" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="label" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="labelFormat" type="ValueMap"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stateManagement" type="xs:boolean"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyCOLookup">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="hubObject" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="label" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="labelFormat" type="ValueMap"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stateManagement" type="xs:boolean"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteCOLookup">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddCOChildOne">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="hubObject" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="label" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="labelFormat" type="ValueMap"/>
+<xs:element maxOccurs="1" minOccurs="0" name="constraint" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stateIntegrity" type="ValueMap"/>
+<xs:element maxOccurs="1" minOccurs="0" name="oneToOneEnforcement" type="ValueMap"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyCOChildOne">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="hubObject" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="label" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="labelFormat" type="ValueMap"/>
+<xs:element maxOccurs="1" minOccurs="0" name="constraint" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stateIntegrity" type="ValueMap"/>
+<xs:element maxOccurs="1" minOccurs="0" name="oneToOneEnforcement" type="ValueMap"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteCOChildOne">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddCOChildMany">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="hubObject" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="label" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="labelFormat" type="ValueMap"/>
+<xs:element maxOccurs="1" minOccurs="0" name="constraint" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stateIntegrity" type="ValueMap"/>
+<xs:element maxOccurs="1" minOccurs="0" name="oneToOneEnforcement" type="ValueMap"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyCOChildMany">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="hubObject" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="label" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="labelFormat" type="ValueMap"/>
+<xs:element maxOccurs="1" minOccurs="0" name="constraint" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stateIntegrity" type="ValueMap"/>
+<xs:element maxOccurs="1" minOccurs="0" name="oneToOneEnforcement" type="ValueMap"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteCOChildMany">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddCOReferenceOne">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="object" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="constraint" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stateIntegrity" type="ValueMap"/>
+<xs:element maxOccurs="1" minOccurs="0" name="oneToOneEnforcement" type="ValueMap"/>
+<xs:element maxOccurs="1" minOccurs="0" name="label" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="required" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="dependsOn" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="lookupDisplayField" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyCOReferenceOne">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="object" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="constraint" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stateIntegrity" type="ValueMap"/>
+<xs:element maxOccurs="1" minOccurs="0" name="oneToOneEnforcement" type="ValueMap"/>
+<xs:element maxOccurs="1" minOccurs="0" name="label" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="required" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="dependsOn" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="lookupDisplayField" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteCOReferenceOne">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddCOField">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="column" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="filterOperator" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="filterExtraSettings" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="filterValues" type="ValueList"/>
+<xs:element maxOccurs="1" minOccurs="0" name="type" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="uri" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="readOnly" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="required" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="label" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyCOField">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="column" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="filterOperator" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="filterExtraSettings" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="filterValues" type="ValueList"/>
+<xs:element maxOccurs="1" minOccurs="0" name="type" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="uri" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="readOnly" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="required" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="label" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteCOField">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddCORelationship">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="hubObject" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="label" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="labelFormat" type="ValueMap"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stateManagement" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="bidirectional" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="toObject" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="toConstraint" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="fromObject" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="fromConstraint" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyCORelationship">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="hubObject" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="label" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="labelFormat" type="ValueMap"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stateManagement" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="bidirectional" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="toObject" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="toConstraint" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="fromObject" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="fromConstraint" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteCORelationship">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddMetaFieldFilter">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="field" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyMetaFieldFilter">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="field" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteMetaFieldFilter">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddMetaNodeFilter">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="node" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyMetaNodeFilter">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="node" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteMetaNodeFilter">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddMetaAllow">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyMetaAllow">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteMetaAllow">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddMetaDeny">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyMetaDeny">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteMetaDeny">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddMetaFilterValue">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="value" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyMetaFilterValue">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="value" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteMetaFilterValue">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddMetaAllowNoRecords">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyMetaAllowNoRecords">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteMetaAllowNoRecords">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddMetaDenyNoRecords">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyMetaDenyNoRecords">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteMetaDenyNoRecords">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddMetaOtherValues">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyMetaOtherValues">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteMetaOtherValues">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddMetaRole">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyMetaRole">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteMetaRole">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddMetaOtherRoles">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyMetaOtherRoles">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteMetaOtherRoles">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddMetaDefaultValue">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="value" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyMetaDefaultValue">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="value" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteMetaDefaultValue">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ValueList">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="listValues">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element name="value" type="Value"/>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Value">
+<xs:attribute name="stringValue" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ValueMap">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="mapValues">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="value" type="Value"/>
+</xs:sequence>
+<xs:attribute name="key" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="AddCSConfig">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyCSConfig">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteCSConfig">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddCSExceptionHandler">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="class" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyCSExceptionHandler">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="class" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteCSExceptionHandler">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddCSStep">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="class" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyCSStep">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="class" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteCSStep">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddCSService">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="exceptionHandler" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="private" type="xs:boolean"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyCSService">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="exceptionHandler" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="private" type="xs:boolean"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteCSService">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddCSExecute">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="target" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="type" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyCSExecute">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="target" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="type" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteCSExecute">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddCSInput">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="type" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="uri" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyCSInput">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="type" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="uri" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteCSInput">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddCSOutput">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="type" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="uri" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyCSOutput">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="type" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="uri" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteCSOutput">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddCSParameter">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stringValue" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="bigIntegerValue" type="BigInteger"/>
+<xs:element maxOccurs="1" minOccurs="0" name="bigDecimalValue" type="BigDecimal"/>
+<xs:element maxOccurs="1" minOccurs="0" name="dateValue" type="XMLGregorianCalendar"/>
+<xs:element maxOccurs="1" minOccurs="0" name="booleanValue" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="value" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyCSParameter">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stringValue" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="bigIntegerValue" type="BigInteger"/>
+<xs:element maxOccurs="1" minOccurs="0" name="bigDecimalValue" type="BigDecimal"/>
+<xs:element maxOccurs="1" minOccurs="0" name="dateValue" type="XMLGregorianCalendar"/>
+<xs:element maxOccurs="1" minOccurs="0" name="booleanValue" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="value" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteCSParameter">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddCSParameterDefinition">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stringValue" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="bigIntegerValue" type="BigInteger"/>
+<xs:element maxOccurs="1" minOccurs="0" name="bigDecimalValue" type="BigDecimal"/>
+<xs:element maxOccurs="1" minOccurs="0" name="dateValue" type="XMLGregorianCalendar"/>
+<xs:element maxOccurs="1" minOccurs="0" name="booleanValue" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="value" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="type" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="uri" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="required" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="directionKind" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyCSParameterDefinition">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="stringValue" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="bigIntegerValue" type="BigInteger"/>
+<xs:element maxOccurs="1" minOccurs="0" name="bigDecimalValue" type="BigDecimal"/>
+<xs:element maxOccurs="1" minOccurs="0" name="dateValue" type="XMLGregorianCalendar"/>
+<xs:element maxOccurs="1" minOccurs="0" name="booleanValue" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="value" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="type" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="uri" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="required" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="directionKind" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteCSParameterDefinition">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="OrderCSExecute">
+<xs:attribute name="executes" type="xs:string"/>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddRestConfig">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyRestConfig">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteRestConfig">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddRestRequest">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="body" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyRestRequest">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="body" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteRestRequest">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddRestParser">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="class" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="parameter" type="ValueMap"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyRestParser">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="class" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="parameter" type="ValueMap"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteRestParser">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddRestProcessor">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="class" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="parameter" type="ValueMap"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyRestProcessor">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="class" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="parameter" type="ValueMap"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteRestProcessor">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddRestErrorHandler">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="class" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="parameter" type="ValueMap"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyRestErrorHandler">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="class" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="parameter" type="ValueMap"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteRestErrorHandler">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddRestWriter">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="class" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="parameter" type="ValueMap"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyRestWriter">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="class" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="parameter" type="ValueMap"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteRestWriter">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddWriteCOConfig">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyWriteCOConfig">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteWriteCOConfig">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddWriteCORoot">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyWriteCORoot">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteWriteCORoot">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddWriteCOChild">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="body" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyWriteCOChild">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="body" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteWriteCOChild">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddSearchableCOConfig">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifySearchableCOConfig">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteSearchableCOConfig">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddSearchableRoot">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifySearchableRoot">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayName" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteSearchableRoot">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddSearchableChild">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifySearchableChild">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteSearchableChild">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddSearchableField">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="searchable" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayable" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="facet" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="filterable" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="sortable" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="fuzzy" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="language" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="facetRange" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="suggester" type="xs:boolean"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifySearchableField">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="searchable" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="displayable" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="facet" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="filterable" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="sortable" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="fuzzy" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="language" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="facetRange" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="suggester" type="xs:boolean"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteSearchableField">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddViewField">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="type" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="uri" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="label" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="length" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="totalDigits" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="fractionDigits" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="readOnly" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="required" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="dependsOn" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyViewField">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="type" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="uri" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="label" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="length" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="totalDigits" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="fractionDigits" type="xs:integer"/>
+<xs:element maxOccurs="1" minOccurs="0" name="readOnly" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="required" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="dependsOn" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteViewField">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddViewChildMany">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="label" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyViewChildMany">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="label" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteViewChildMany">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddViewConfig">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyViewConfig">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteViewConfig">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddViewRoot">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="label" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="co" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyViewRoot">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="label" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="co" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteViewRoot">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddViewChildOne">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="label" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyViewChildOne">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="label" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteViewChildOne">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="OrderViewField">
+<xs:attribute name="id" type="xs:string"/>
+<xs:attribute name="items" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="OrderViewChild">
+<xs:attribute name="id" type="xs:string"/>
+<xs:attribute name="items" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddTransformationConfig">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="version" type="xs:integer"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyTransformationConfig">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="version" type="xs:integer"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteTransformationConfig">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddView2CO">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="view" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyView2CO">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="view" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteView2CO">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddCO2View">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="view" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyCO2View">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="view" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteCO2View">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddCO2CO">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="CO2CO" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyCO2CO">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="CO2CO" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteCO2CO">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddBE2XML">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="be" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="type" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="uri" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="target" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyBE2XML">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="be" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="type" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="uri" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="target" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteBE2XML">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddXML2BE">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="be" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="type" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="uri" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="source" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="exposeAsService" type="xs:boolean"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyXML2BE">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="be" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="type" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="uri" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="source" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="exposeAsService" type="xs:boolean"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteXML2BE">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddCVTransformation">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="type" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="function" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="statusOutput" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="statusSuccess" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyCVTransformation">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="type" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="function" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="statusOutput" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="statusSuccess" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteCVTransformation">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddCVGroup">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="source" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="target" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyCVGroup">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="source" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="target" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteCVGroup">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddCVInput">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="field" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="value" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyCVInput">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="field" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="value" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteCVInput">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddCVOutput">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="field" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="value" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyCVOutput">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="field" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="value" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteCVOutput">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddComponentInstance">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="type" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="config_data" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyComponentInstance">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="type" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="config_data" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteComponentInstance">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddTaskConfig">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyTaskConfig">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteTaskConfig">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddTaskTemplate">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="body" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyTaskTemplate">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="body" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteTaskTemplate">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddTaskTrigger">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyTaskTrigger">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteTaskTrigger">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddTaskType">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="comment" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="attachment" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="label" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyTaskType">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="comment" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="attachment" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="label" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteTaskType">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddActionConfigAction">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyActionConfigAction">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteActionConfigAction">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddActionConfigEntity">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyActionConfigEntity">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteActionConfigEntity">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddActionConfigRole">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyActionConfigRole">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteActionConfigRole">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddTaskActionConfig">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="comment" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="attachment" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="manualReassign" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyTaskActionConfig">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="comment" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="attachment" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="manualReassign" type="xs:boolean"/>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteTaskActionConfig">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddTaskRole">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyTaskRole">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteTaskRole">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddTaskEntity">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyTaskEntity">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteTaskEntity">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddTaskEvent">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyTaskEvent">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteTaskEvent">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddStartWorkflow">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="comment" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="attachment" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="process" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="taskKind" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="taskTemplate" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="firstTaskType" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyStartWorkflow">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="comment" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="attachment" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="process" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="taskKind" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="taskTemplate" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="firstTaskType" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteStartWorkflow">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddExtensionsConfig">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyExtensionsConfig">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteExtensionsConfig">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddWSDL">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="content" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="url" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyWSDL">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="content" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="url" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteWSDL">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddSOAPService">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="namespace" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="serviceName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="portName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="endpointAddress" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="wsdl" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="soapHeader" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifySOAPService">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="namespace" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="serviceName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="portName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="endpointAddress" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="wsdl" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="soapHeader" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteSOAPService">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddDaaSProvider">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="type" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="systemName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="soapService" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="soapOperation" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="be2xml" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="xml2be" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="be" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="requiredFields" type="ValueList"/>
+<xs:element maxOccurs="1" minOccurs="0" name="scoreField" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="labelFormat" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyDaaSProvider">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="type" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="systemName" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="soapService" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="soapOperation" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="be2xml" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="xml2be" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="be" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="requiredFields" type="ValueList"/>
+<xs:element maxOccurs="1" minOccurs="0" name="scoreField" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="labelFormat" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteDaaSProvider">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddExternalCall">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="soapService" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="soapOperation" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="businessEntities" type="ValueList"/>
+<xs:element maxOccurs="1" minOccurs="0" name="servicePhases" type="ValueList"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyExternalCall">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="soapService" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="soapOperation" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="businessEntities" type="ValueList"/>
+<xs:element maxOccurs="1" minOccurs="0" name="servicePhases" type="ValueList"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteExternalCall">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddBesMetadataBundle">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="zipBytes" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyBesMetadataBundle">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="zipBytes" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteBesMetadataBundle">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddDbResourceBundles">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyDbResourceBundles">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteDbResourceBundles">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddDbResourceBundle">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="hubObject" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyDbResourceBundle">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="hubObject" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteDbResourceBundle">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="AddDbBundleMapping">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="keyColumn" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="countryColumn" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="languageColumn" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="valueColumn" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="ModifyDbBundleMapping">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="keyColumn" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="countryColumn" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="languageColumn" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="valueColumn" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:complexType name="DeleteDbBundleMapping">
+<xs:attribute name="id" type="xs:string"/>
+</xs:complexType>
+<xs:element name="changeList" type="ChangeList"/>
+</xs:schema>

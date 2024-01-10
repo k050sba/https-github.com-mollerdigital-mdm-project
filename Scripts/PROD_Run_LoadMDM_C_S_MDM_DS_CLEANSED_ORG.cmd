@@ -1,0 +1,1 @@
+d:\scripts\psexec.exe -i -s -d \\no000010smdmp2  -u cmxserviceprod -p !cmX5erviceP  "D:\scripts\RunMDMJob_C_S_MDM_DS_CLEANSED_ORG.bat"
