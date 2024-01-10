@@ -1,0 +1,7 @@
+option batch continue
+option confirm off
+
+open mollermarketing@mollermarketing.campaign.adobe.com/incoming/imports -privatekey=D:\WinscpDealerReports_Export\Exportprivatekey.ppk
+put \\no000010smdmcu\PROD_CACHE_BCK\PreferredDealerExport\PreferredDealerExport.csv PreferredDealerExport_%TIMESTAMP#yyyymmddhhnnss%.csv
+put \\no000010smdmcu\PROD_CACHE_BCK\DealerRelationExport\CustomerResellerRelation.csv CustomerResellerRelation_%TIMESTAMP#yyyymmddhhnnss%.csv
+exit

@@ -1,0 +1,11 @@
+option batch continue
+option confirm off
+
+open mollermarketing@mollermarketing.campaign.adobe.com  -privatekey=D:\WinscpDealerReports_Export\Exportprivatekey.ppk
+lcd \\no000010smdmcu\Repository\ActiveCarRelationdump_NO\Adobe_Dump_Copy_From_Adobe\
+get /incoming/export/CAPI_issues_2023/profile_car_relation_export/profileRelations.csv
+
+
+open mollermarketing@mollermarketing.campaign.adobe.com/incoming/export/CAPI_issues_2023/Archive -privatekey=D:\WinscpDealerReports_Export\Exportprivatekey.ppk
+put \\no000010smdmcu\Repository\ActiveCarRelationdump_NO\Adobe_Dump_Copy_From_Adobe\profileRelations.csv profileRelations.csv_%TIMESTAMP#yyyymmddhhnnss%.csv
+exit

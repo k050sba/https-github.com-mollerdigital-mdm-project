@@ -1,0 +1,6 @@
+option batch continue
+option confirm off
+open mollermarketing@mollermarketing.campaign.adobe.com -privatekey=D:\WinscpEmail\emailprivatekey.ppk
+lcd D:\WinscpEmail\BouncedEmailDownloaded
+get /incoming/export/bounced_emails/*%TIMESTAMP#yyyymm%*.csv*
+exit
